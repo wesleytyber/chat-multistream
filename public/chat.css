@@ -1,0 +1,82 @@
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(30, 30, 47, 0.95);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
+}
+
+ .container {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  height: 90vh;
+}
+
+.config {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.config label {
+  display: block;
+  margin: 5px 0;
+}
+
+.preview {
+  flex: 1;
+  background: rgba(0,0,0,0.5);
+  border-radius: 10px;
+  padding: 10px;
+  overflow-y: auto;
+  perspective: 500px;
+}
+
+.chat-message {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 5px;
+}
+
+.username {
+  font-weight: 600;
+}
+
+.message {
+  font-weight: 400;
+}
+
+#chat {
+  margin-top: 20px;
+  width: 90%;
+  max-width: 600px;
+  height: 400px;
+  overflow-y: auto;
+  background: rgba(0,0,0,0.5);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.chat-message {
+  margin: 3px 0;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.badge {
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+  margin-right: 2px;
+}
+
+.twitch-icon {
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
