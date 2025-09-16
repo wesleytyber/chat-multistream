@@ -4,14 +4,14 @@
 body {
   display: flex;
   align-items: center;      /* eixo vertical */
-  justify-content: center;  /* eixo horizontal */
+  justify-content: left;  /* eixo horizontal */
   margin: 0;
   height: 100vh;
   padding: 20px;
   gap: 20px;
-  background: linear-gradient(135deg, #0f1b2b, #001510);
+  background: transparent;
   color: #fff;
-  font-family: Arial, sans-serif;
+  font-family: "Segoe UI Emoji", "Noto Color Emoji", "Apple Color Emoji", sans-serif;
   box-sizing: border-box;
   overflow: hidden; /* evita scroll do navegador */
 }
@@ -25,37 +25,16 @@ body {
 
 /* Main wrapper: três colunas */
 .main-wrapper {
-    display: flex;
-    justify-content: center; /* centraliza horizontal */
-    align-items: flex-start; /* alinha topo dos elementos */
-    gap: 8px;
+  display: flex;
+  gap: 20px;
+  flex: 1;
 }
 
-/* Container interno para inputs e preview lado a lado */
-.left-center, .preview {
-    display: flex;
-    flex-direction: column;
-    flex: 1;               /* ocupam espaço igual */
-    max-width: 600px;      /* largura máxima para não estourar a tela */
-    min-width: 300px;      /* largura mínima */
-    max-height: 300px;
-    min-height: 300px;
-}
-
-.twitch {
-  background: rgba(128, 0, 128, 0.5);
-}
-
-.youtube {
-  background: rgba(255, 0, 0, 0.5);
-}
-
-.tiktok {
-  background: rgba(221, 160, 221, 0.5);
-}
-
-.kick {
-  background: rgba(0, 128, 0, 0.5);
+/* Esquerda + centro */
+.left-center {
+  display: flex;
+  gap: 20px;
+  flex: 1;
 }
 
 /* =========================
@@ -67,7 +46,7 @@ body {
   display: flex;
   flex-direction: column; /* mensagens de cima para baixo */
   overflow-y: auto;
-
+  font-family: "Segoe UI Emoji", "Noto Color Emoji", "Apple Color Emoji", sans-serif;
   /* Esconde a scrollbar no Firefox */
   scrollbar-width: none;
 
@@ -89,7 +68,7 @@ body {
 .preview {
   width: 400px;
   height: 200px;
-  background: #1a1a1a;
+  background: #111;
   padding: 10px;
   border-radius: 8px;
   margin-bottom: 5px;
@@ -106,13 +85,6 @@ body {
   width: auto;           /* ajusta à largura do texto */
 }
 
-.preview-icon {
-  width: 18px;
-  height: 18px;
-  object-fit: contain;
-  vertical-align: middle;
-}
-
 #chatPreview div {
   gap: 8px;
   margin-bottom: 8px;
@@ -122,33 +94,16 @@ body {
    Username e mensagens
    ========================= */
 .username {
-    display: flex;
-    align-items: center;   /* centraliza ícone e input no meio vertical */
-    height: 70px;
-    padding: 0 15px;
-    border-radius: 8px;
-    margin-bottom: 10px;
-    gap: 10px;             /* espaço entre ícone e input */
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  border-radius: 6px;
+  gap: 6px;
 }
 
-/* Ícone */
-.username img {
-    width: 32px;
-    height: 32px;
-    object-fit: contain;
-}
-
-/* Input */
-.username input {
-    flex: 1;  /* ocupa o espaço restante */
-    height: 40px;
-    border: none;
-    outline: none;
-    padding: 0 10px;
-    border-radius: 6px;
-    background: rgba(0, 0, 0, 0.5); /* preto 50% */
-    color: white;
-    font-size: 16px;
+.username .name {
+  font-weight: bold;
+  color: #fff;
 }
 
 .message {
@@ -160,26 +115,20 @@ body {
   height: 18px;
   vertical-align: middle;
   margin-right: 2px;
-  border-radius: 4px;
 }
 
 /* =========================
    Config Panel
    ========================= */
 .config-panel {
-    display: flex;
-    gap: 20px;
-    justify-content: space-between;
-    margin-bottom: 20px;
-}
-
-.config-panel .config-section {
-    background: #1a1a1a;
-    padding: 15px;
-    border-radius: 8px;
-    flex: 1;
-    min-width: 200px;
-    color: #fff;
+  width: 300px;
+  height: fit-content;
+  padding: 15px;
+  background: #0d1a12;
+  border-radius: 8px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 20px;
 }
 
 .config-panel h3 {
@@ -235,7 +184,7 @@ body {
 .input-group input {
   flex: 1;
   background: #222;
-  color: #858484;
+  color: #fff;
   border: none;
   padding: 6px;
   border-radius: 4px;
@@ -254,31 +203,16 @@ body {
    ========================= */
 .title {
   align-self: center;
-  vertical-align: text-top;
 }
 
 .coming {
   font-size: 14px;
 }
 
-.footer {
-    position: fixed;       /* fixa no fundo da tela */
-    bottom: 0;             /* sempre no rodapé */
-    left: 0;               /* começa do lado esquerdo */
-    width: 100%;           /* ocupa toda a largura */
-    background-color: #111; /* fundo escuro */
-    color: #fff;           /* texto branco */
-    text-align: center;    /* centraliza o texto */
-    padding: 10px 0;       /* espaçamento vertical */
-    font-size: 14px;       /* tamanho da fonte */
-    font-family: Arial, sans-serif;
-    box-shadow: 0 -2px 5px rgba(0,0,0,0.3); /* sombra sutil */
-    z-index: 9999;         /* fica acima de outros elementos */
-}
-
-@media (max-width: 600px) {
-    .footer {
-        font-size: 12px;
-        padding: 8px 0;
-    }
+/* =========================
+   Imagem auxiliares
+   ========================= */
+.emote {
+  height: 28px;
+  vertical-align: middle;
 }

@@ -30,36 +30,36 @@ const rotateZ = document.getElementById('rotateZ');
 
 // Valores iniciais de CSS dinâmico
 let config = {
-    spacing: 10,
-    margins: 10,
-    rotateX: 0,
-    rotateY: 0,
-    rotateZ: 0,
-    usernameFont: "Roboto",
-    usernameColor: "#66cfff",
-    usernameBg: "transparent",
-    usernameSize: "16px",
-    usernameWeight: 600,
-    messageFont: "Roboto",
-    messageColor: "#fff",
-    messageBg: "transparent",
-    messageSize: "16px",
-    messageWeight: 400
+  spacing: 10,
+  margins: 10,
+  rotateX: 0,
+  rotateY: 0,
+  rotateZ: 0,
+  usernameFont: "Roboto",
+  usernameColor: "#66cfff",
+  usernameBg: "transparent",
+  usernameSize: "16px",
+  usernameWeight: 600,
+  messageFont: "Roboto",
+  messageColor: "#fff",
+  messageBg: "transparent",
+  messageSize: "16px",
+  messageWeight: 400
 };
 
 // Atualiza CSS em tempo real
 function updateCSS() {
-    const css = `
+  const css = `
 @import url('https://fonts.googleapis.com/css2?family=${config.usernameFont}&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=${config.messageFont}&display=swap');
 
 .custom .chat-message {
+  margin-bottom: ${config.spacing}px; 
   margin: ${config.margins} 0; /* top/bottom */
-  margin-bottom: ${config.spacing};
   transform: rotateX(${config.rotateX}deg) rotateY(${config.rotateY}deg) rotateZ(${config.rotateZ}deg);
 }
 
-.custom .username input {
+.custom .username-preview span:first-of-type {
   font-family: '${config.usernameFont}', sans-serif;
   color: ${config.usernameColor};
   background: ${config.usernameBg};
@@ -80,17 +80,17 @@ function updateCSS() {
 }
   `;
 
-    // Atualiza textarea CSS
-    customCssInput.value = css.trim();
+  // Atualiza textarea CSS
+  customCssInput.value = css.trim();
 
-    // Aplica no preview
-    let styleTag = document.getElementById("dynamicStyle");
-    if (!styleTag) {
-        styleTag = document.createElement("style");
-        styleTag.id = "dynamicStyle";
-        document.head.appendChild(styleTag);
-    }
-    styleTag.innerHTML = css;
+  // Aplica no preview
+  let styleTag = document.getElementById("dynamicStyle");
+  if (!styleTag) {
+    styleTag = document.createElement("style");
+    styleTag.id = "dynamicStyle";
+    document.head.appendChild(styleTag);
+  }
+  styleTag.innerHTML = css;
 }
 
 function updateConfig(id, value) {
@@ -125,21 +125,21 @@ document.querySelectorAll(".config-panel input").forEach(input => {
 
 // Botão copiar CSS
 function copyCss() {
-    navigator.clipboard.writeText(customCssInput.value);
+  navigator.clipboard.writeText(customCssInput.value);
 }
 
 // Botão copiar URL
 function copyUrl() {
-    const twitchInput = document.getElementById("twitchUser");
-    const channel = twitchInput.value.trim(); // pega o valor digitado
-    if (!channel) {
-        alert("Digite um nome de canal primeiro!");
-        return;
-    }
-    const url = `https://chat-multistream.onrender.com/chat.html?channel=${channel}`;
-    obsUrlInput.value = url;
-    navigator.clipboard.writeText(url);
-    // alert("Overlay URL copiado!");
+  const twitchInput = document.getElementById("twitchUser");
+  const channel = twitchInput.value.trim(); // pega o valor digitado
+  if (!channel) {
+    alert("Digite um nome de canal primeiro!");
+    return;
+  }
+  const url = `https://chat-multistream.onrender.com/chat.html?channel=${channel}`;
+  obsUrlInput.value = url;
+  navigator.clipboard.writeText(url);
+  // alert("Overlay URL copiado!");
 }
 
 // Inicia CSS
