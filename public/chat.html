@@ -4,32 +4,43 @@
 <head>
     <meta charset="UTF-8">
     <title>Overlay Chat</title>
-    <link rel="stylesheet" href="chat.css">
+    <link rel="stylesheet" href="http://localhost:3000/css/style.css">
 </head>
 
 <body>
-    <div id="chatContainer"></div>
+    <div id="chatPreview"></div>
     <script src="/socket.io/socket.io.js"></script>
     <script>
         const socket = io();
-
         // Pega o canal da URL
         const params = new URLSearchParams(window.location.search);
         const channel = params.get('channel');
-        const chatDiv = document.getElementById('chatContainer');
+        const chatDiv = document.getElementById('chatPreview');
         const twitchIcon = '<img class="twitch-icon" src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Twitch_Glitch_Logo_Purple.svg" alt="Twitch">';
 
         if (channel) {
             socket.emit('join-channel', channel);
         }
-        
+
         socket.on('new-message', (msg) => {
             const div = document.createElement('div');
-            div.classList.add('m-chatitem');
             div.innerHTML = `${twitchIcon} ${msg.badges.join(' ')} <b style="color:${msg.color}">${msg.user}:</b> ${msg.message}`;
             chatDiv.appendChild(div);
             chatDiv.scrollTop = chatDiv.scrollHeight;
         });
+
+        const chatBox = document.getElementById("chatPreview");
+       
+        function scrollToBottom() {
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        // Sempre que adicionar mensagem
+        function addMessage(html) {
+            chatBox.insertAdjacentHTML("beforeend", html);
+            scrollToBottom();
+        }
+
     </script>
 </body>
 

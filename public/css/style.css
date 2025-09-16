@@ -1,0 +1,210 @@
+/* =========================
+   Layout geral
+   ========================= */
+body {
+  display: flex;
+  align-items: center;      /* eixo vertical */
+  justify-content: center;  /* eixo horizontal */
+  margin: 0;
+  height: 100vh;
+  padding: 20px;
+  gap: 20px;
+  background: linear-gradient(135deg, #0f1b2b, #001510);
+  color: #fff;
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+  overflow: hidden; /* evita scroll do navegador */
+}
+
+/* Container principal */
+.container {
+  display: flex;
+  flex-direction: column;
+  flex: 0;
+}
+
+/* Main wrapper: três colunas */
+.main-wrapper {
+  display: flex;
+  gap: 20px;
+  flex: 1;
+}
+
+/* Esquerda + centro */
+.left-center {
+  display: flex;
+  gap: 20px;
+  flex: 1;
+}
+
+/* =========================
+   Chat Preview
+   ========================= */
+#chatPreview {
+  width: 100vh;
+  height: 100vh;
+  display: flex;
+  flex-direction: column; /* mensagens de cima para baixo */
+  overflow-y: auto;
+
+  /* Esconde a scrollbar no Firefox */
+  scrollbar-width: none;
+
+  /* Esconde a scrollbar no IE/Edge antigo */
+  -ms-overflow-style: none;
+}
+
+/* Esconde a scrollbar no Chrome/Safari/Edge novo */
+#chatPreview::-webkit-scrollbar {
+  display: none;
+}
+
+.custom .chat-message {
+  font-family: 'Roboto', sans-serif;
+  color: #fff;
+}
+
+/* Preview container */
+.preview {
+  width: 400px;
+  height: 200px;
+  background: #111;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 5px;
+  overflow-y: none; /* corrige overflow-y: none */
+}
+
+.preview input {
+  border: none;          /* remove a borda */
+  background: transparent; /* remove o fundo */
+  color: #fff;           /* mantém o texto visível */
+  font-weight: bold;     /* opcional: deixa o nome em negrito */
+  padding: 0;            /* remove padding interno */
+  margin: 0 6px 0 0;     /* margem à direita do ícone ou gap */
+  width: auto;           /* ajusta à largura do texto */
+}
+
+#chatPreview div {
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+/* =========================
+   Username e mensagens
+   ========================= */
+.username {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  border-radius: 6px;
+  gap: 6px;
+}
+
+.username .name {
+  font-weight: bold;
+  color: #fff;
+}
+
+.message {
+  color: #ccc;
+}
+
+.twitch-icon, .badge {
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+  margin-right: 2px;
+}
+
+/* =========================
+   Config Panel
+   ========================= */
+.config-panel {
+  width: 300px;
+  height: fit-content;
+  padding: 15px;
+  background: #0d1a12;
+  border-radius: 8px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 20px;
+}
+
+.config-panel h3 {
+  margin: 15px 0 5px 0;
+  font-size: 16px;
+}
+
+.config-panel label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.config-panel input[type="text"],
+.config-panel input[type="number"],
+.config-panel input[type="color"],
+.config-panel input[type="range"] {
+  margin-left: 10px;
+  flex: 1;
+  padding: 4px 6px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+/* =========================
+   Top Panel
+   ========================= */
+.top-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: #111;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+/* Cada grupo de input ocupa a largura total do panel */
+.input-group {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  width: 100%;
+}
+
+.input-group label {
+  flex: 0 0 100px;
+}
+
+.input-group input {
+  flex: 1;
+  background: #222;
+  color: #fff;
+  border: none;
+  padding: 6px;
+  border-radius: 4px;
+}
+
+.input-group button {
+  background: #333;
+  border: none;
+  color: #fff;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+/* =========================
+   Textos auxiliares
+   ========================= */
+.title {
+  align-self: center;
+}
+
+.coming {
+  font-size: 14px;
+}
