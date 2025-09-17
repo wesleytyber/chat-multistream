@@ -95,10 +95,7 @@
 
                 <!-- Widget LivePix -->
                 <iframe src="https://widget.livepix.gg/embed/5fa15866-6327-4c22-9dcf-05b5bddfbf05" width="300"
-                    height="400"
-                    frameborder="0"
-                    allowtransparency="true"
-                    scrolling="no">
+                    height="400" frameborder="0" allowtransparency="true" scrolling="no">
                 </iframe>
 
                 <p>Ou direto pelo banco usando a Chave Pix: <strong id="pixKey"></strong></p>
@@ -156,9 +153,9 @@
                     iframe.id = platform + 'Chat';
                     iframe.setAttribute('frameborder', '0');
 
-                    if (platform === 'twitch') iframe.src = `https://www.twitch.tv/embed/${value}/chat?parent=https:/chat-multistream.onrender.com/&darkpopout=true`;
+                    if (platform === 'twitch') iframe.src = `https://www.twitch.tv/embed/${value}/chat?parent=https://chat-multistream.onrender.com&darkpopout=true`;
                     if (platform === 'kick') iframe.src = `https://kick.com/${value}/chat`;
-                    if (platform === 'youtube') iframe.src = `https://www.youtube.com/live_chat?v=${value}&embed_domain=https:/chat-multistream.onrender.com`;
+                    if (platform === 'youtube') iframe.src = `https://www.youtube.com/live_chat?v=${value}&embed_domain=https://chat-multistream.onrender.com`;
 
                     // monta
                     wrapper.appendChild(header);
@@ -227,5 +224,3 @@
 </body>
 
 </html>
-
-<!-- N8tfSCDT4x0 -->
