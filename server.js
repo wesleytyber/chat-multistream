@@ -1,11 +1,13 @@
 import express from 'express';
 import http from 'http';
 import { Server } from 'socket.io';
+import path from 'path';
 import tmi from 'tmi.js';
+import { fileURLToPath } from 'url';
 
 const app = express();
 const server = http.createServer(app);
-const io = new Server(server);
+const io = new Server(server, { cors: { origin: '*' } });
 
 app.use(express.static('public'));
 
@@ -56,3 +58,64 @@ io.on('connection', (socket) => {
 server.listen(3000, () => {
   console.log('Servidor rodando em http://localhost:3000');
 });
+
+// import express from 'express';
+// import http from 'http';
+// import { Server } from 'socket.io';
+// import path from 'path';
+// import { fileURLToPath } from 'url';
+
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = path.dirname(__filename);
+
+// const app = express();
+// const server = http.createServer(app);
+// const io = new Server(server, { cors: { origin: '*' } });
+
+// app.use(express.json());
+// app.use(express.static(path.join(__dirname, 'public')));
+
+// app.get('/', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'public', 'index.html'));
+// });
+
+// // Simula mensagem da Kick a cada 15s
+// setInterval(() => {
+//   const msg = {
+//     user: 'KickSim',
+//     message: 'Mensagem simulada da Kick!',
+//     avatar: 'https://i.imgur.com/Exemplo.png',
+//     badges: [
+//       { text: 'Moderator', type: 'moderator' },
+//       { text: 'Subscriber', type: 'subscriber', count: 2 }
+//     ],
+//     usernameColor: '#FF5733',
+//     createdAt: new Date().toISOString()
+//   };
+//   io.emit('chatMessage', msg);
+// }, 1000);
+
+// // Endpoint para simular mensagens via POST (como se fosse o Webhook real)
+// app.post('/kick-webhook', (req, res) => {
+//   const p = req.body;
+//   const message = {
+//     user: p.sender.username,
+//     message: p.content,
+//     avatar: p.sender.profile_picture || 'https://i.imgur.com/Exemplo.png',
+//     badges: p.sender.identity?.badges || [],
+//     usernameColor: p.sender.identity?.username_color || '#FFFFFF',
+//     createdAt: p.created_at
+//   };
+//   io.emit('chatMessage', message);
+//   res.sendStatus(200);
+// });
+
+// // Socket.IO
+// io.on('connection', (socket) => {
+//   console.log('Cliente conectado:', socket.id);
+// });
+
+// const PORT = process.env.PORT || 3000;
+// server.listen(PORT, () => {
+//   console.log(`Servidor rodando em http://localhost:${PORT}`);
+// });

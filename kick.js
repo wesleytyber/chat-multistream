@@ -1,26 +1,21 @@
-import WebSocket from "ws";
+import axios from 'axios';
+import dotenv from 'dotenv';
+dotenv.config();
 
-export function connectKick(channel, onMessage) {
-  const ws = new WebSocket("wss://api.kick.com/socket.io/?EIO=3&transport=websocket");
-
-  ws.on("open", () => {
-    console.log(`Conectado ao chat da Kick: ${channel}`);
-    // precisa adaptar para assinatura de sala do canal
-    ws.send(`42["join",{"room":"chatrooms:${channel}"}]`);
-  });
-
-  ws.on("message", (data) => {
+export default {
+  sendMessage: async (channelId, text) => {
+    const token = process.env.KICK_TOKEN;
+    if (!token) return null;
     try {
-      const msg = data.toString();
-      if (msg.includes("message")) {
-        const payload = JSON.parse(msg.split("42")[1])[1];
-        onMessage({
-          user: payload.sender.username,
-          text: payload.content
-        });
-      }
-    } catch (e) {
-      // ignora mensagens que não são do chat
+      const res = await axios.post(
+        `https://kick.com/api/v1/chat/${channelId}/send`,
+        { text },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      return res.data;
+    } catch (err) {
+      console.warn('Kick send message error', err?.response?.data || err.message);
+      return null;
     }
-  });
-}
+  }
+};

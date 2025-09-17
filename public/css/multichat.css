@@ -1,0 +1,388 @@
+       /* Reset básico */
+       * {
+           box-sizing: border-box;
+           margin: 0;
+           padding: 0;
+           font-family: Arial, sans-serif;
+       }
+
+       body {
+           margin: 0;
+           font-family: 'Segoe UI', sans-serif;
+           background: linear-gradient(135deg, #0f1b2b, #001510);
+           color: #fff;
+           overflow: hidden;
+       }
+
+       .app-wrapper {
+           display: flex;
+           flex-direction: column;
+           height: 100vh;
+       }
+
+       .app-header-container {
+           display: flex;
+           justify-content: space-between;
+           align-items: center;
+           /* garante alinhamento vertical */
+           padding: 10px 20px;
+           background: linear-gradient(90deg, #9146FF, #FF0000, #00BFFF, #69C9D0);
+           box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+           font-family: 'Arial', sans-serif;
+           color: #fff;
+       }
+
+       .app-header-container.menu-open {
+           margin-right: 300px;
+           /* mesma largura do painel */
+       }
+
+       .app-title {
+           font-size: 2rem;
+           font-weight: bold;
+           margin: 0;
+           font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+           display: flex;
+           align-items: center;
+           gap: 8px;
+           margin: 0;
+       }
+
+       .app-title .icon {
+           color: #00BFFF;
+           /* globo azul */
+       }
+
+       .app-title .main {
+           color: #fff;
+           /* Multi Chat branco */
+       }
+
+       .app-title .subtitle {
+           color: #ccc;
+           /* Moderação e Visualização cinza */
+           font-weight: normal;
+       }
+
+       .menu-toggle {
+           font-size: 1.5rem;
+           background: transparent;
+           border: none;
+           cursor: pointer;
+           color: #fff;
+       }
+
+       .app-title .highlight {
+           background: white;
+           -webkit-background-clip: text;
+           -webkit-text-fill-color: transparent;
+       }
+
+       .app-title .subtitle {
+           font-size: 1rem;
+           font-weight: normal;
+           color: #e2dada;
+           margin-left: 5px;
+       }
+
+       /* Header */
+       .app-header {
+           /* padding: 15px 20px; */
+           text-align: left;
+           font-size: 26px;
+           font-weight: bold;
+       }
+
+       /* Conteúdo principal */
+       .app-container {
+           display: flex;
+           height: calc(100vh - 60px);
+           flex: 1;
+           overflow: hidden;
+           position: relative;
+       }
+
+       /* Chat-area ocupa todo o espaço restante */
+       .chat-area {
+           flex: 1;
+           display: flex;
+           gap: 20px;
+           padding: 10px;
+           overflow-x: hidden;
+           transition: flex 0.3s;
+       }
+
+       .chat-area iframe {
+           flex: 1;
+           border-radius: 10px;
+           height: 100%;
+           border: none;
+       }
+
+       .app-header-container,
+       header {
+           display: flex;
+           justify-content: space-between;
+           align-items: center;
+           padding: 15px 20px;
+           transition: padding-right 0.3s;
+           /* animação do espaço do botão */
+       }
+
+       .menu-toggle {
+           background: none;
+           border: none;
+           color: #00ffcc;
+           font-size: 1.5rem;
+           cursor: pointer;
+           margin-bottom: 10px;
+           transition: transform 0.3s;
+       }
+
+       .menu-toggle:hover {
+           transform: rotate(90deg);
+       }
+
+       #togglePanelBtn {
+           background: #1f1f1f;
+           color: #fff;
+           border: none;
+           border-radius: 8px;
+           padding: 10px;
+           cursor: pointer;
+           font-size: 18px;
+           transition: transform 0.3s;
+           /* animação do movimento */
+       }
+
+       /* Painel lateral */
+       .config-panel {
+           width: 0;
+           /* inicia fechado */
+           overflow: hidden;
+           background: rgba(255, 255, 255, 0.05);
+           padding: 0;
+           /* sem padding quando fechado */
+           box-sizing: border-box;
+           /* inclui padding na largura */
+           display: flex;
+           flex-direction: column;
+           gap: 20px;
+           border-left: 2px solid #333;
+           box-shadow: -4px 0 10px rgba(0, 0, 0, 0.5);
+           transition: width 0.3s, padding 0.3s;
+           /* anima também o padding */
+       }
+
+       .config-panel h2 {
+           margin-bottom: 15px;
+           color: #00ffcc;
+       }
+
+       .config-panel.show {
+           width: 300px;
+           padding: 20px;
+           /* padding só quando aberto */
+       }
+
+       /* Header do chat com logo */
+       .chat-wrapper {
+           border: 1px solid #333;
+           margin: 5px;
+           display: flex;
+           flex: 1;
+           flex-direction: column;
+           background: #0f0f0f;
+           border-radius: 8px;
+           overflow: hidden;
+       }
+
+       .chat-header {
+           display: flex;
+           align-items: center;
+           gap: 6px;
+           padding: 6px 10px;
+           background: #111;
+           border-bottom: 1px solid #333;
+           font-weight: bold;
+           color: #fff;
+       }
+
+       .chat-header svg {
+           width: 18px;
+           height: 18px;
+       }
+
+       iframe {
+           flex: 1;
+           border: none;
+           width: 100%;
+       }
+
+       /* Ícones no menu */
+       .chat-config label svg {
+           width: 16px;
+           height: 16px;
+           vertical-align: middle;
+           margin-right: 6px;
+       }
+
+       /* Cada chat-config */
+       .chat-config {
+           display: flex;
+           flex-direction: column;
+           gap: 8px;
+           background: rgba(255, 255, 255, 0.02);
+           padding: 12px;
+           border-radius: 8px;
+           transition: background 0.3s;
+       }
+
+       .chat-config:hover {
+           background: rgba(255, 255, 255, 0.05);
+       }
+
+       /* Labels */
+       .chat-config label {
+           font-size: 0.9rem;
+           color: #ccc;
+           margin-bottom: 4px;
+       }
+
+       /* Inputs de texto */
+       .chat-config input[type="text"] {
+           padding: 6px 10px;
+           border-radius: 6px;
+           border: 1px solid #444;
+           background: rgba(255, 255, 255, 0.05);
+           color: #fff;
+           transition: all 0.2s;
+       }
+
+       .chat-config input[type="text"]:focus {
+           outline: none;
+           border-color: #00ffcc;
+           box-shadow: 0 0 5px #00ffcc55;
+       }
+
+       /* Checkboxes */
+       .chat-config input[type="checkbox"] {
+           accent-color: #00ffcc;
+           margin-right: 6px;
+       }
+
+       /* Footer */
+       .app-footer {
+           background: #1f1f1f;
+           border-top: 2px solid #333;
+           padding: 10px 20px;
+           display: flex;
+           justify-content: space-between;
+           align-items: center;
+       }
+
+       .social-icons {
+           width: 20px;
+           height: 20px;
+       }
+
+       .social-links a {
+           margin-left: 10px;
+           color: #fff;
+           font-size: 18px;
+           text-decoration: none;
+           transition: color 0.2s;
+       }
+
+       .social-links a:hover {
+           color: #1db954;
+       }
+       
+       /* 
+       DONATE CSS
+       */
+       .donate-button {
+           background: #ffcc00;
+           color: #000;
+           font-weight: bold;
+           padding: 6px 12px;
+           border: none;
+           border-radius: 8px;
+           cursor: pointer;
+           margin-left: 10px;
+       }
+
+       .modal {
+           display: none;
+           position: fixed;
+           z-index: 999;
+           left: 0;
+           top: 0;
+           width: 100%;
+           height: 100%;
+           background: rgba(0, 0, 0, 0.7);
+           justify-content: center;
+           align-items: center;
+       }
+
+       .modal-content {
+           background: #111;
+           padding: 20px;
+           border-radius: 10px;
+           text-align: center;
+           color: #050303;
+           max-width: 400px;
+       }
+
+       .modal-content canvas {
+           margin: 10px 0;
+       }
+
+       .close {
+           float: right;
+           font-size: 20px;
+           cursor: pointer;
+           ;
+       }
+
+       #pixQr {
+           width: 220px;
+           height: 220px;
+           margin: 20px auto;
+           display: block;
+           /* ou flex se quiser centralizar */
+       }
+
+       #donateModal {
+           display: none;
+           position: fixed;
+           top: 0;
+           left: 0;
+           width: 100%;
+           height: 100%;
+           background: rgba(0, 0, 0, 0.5);
+           justify-content: center;
+           align-items: center;
+           z-index: 1000;
+       }
+
+       .modal-content {
+           background: #fff;
+           padding: 20px;
+           text-align: center;
+           border-radius: 10px;
+           max-width: 400px;
+           width: 90%;
+       }
+
+       #pixQr {
+           width: 220px;
+           height: 220px;
+           margin: 20px auto;
+       }
+
+       .closeBtn {
+           cursor: pointer;
+           font-size: 20px;
+           float: right;
+       }
