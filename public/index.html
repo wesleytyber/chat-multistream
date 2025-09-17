@@ -156,9 +156,9 @@
                     iframe.id = platform + 'Chat';
                     iframe.setAttribute('frameborder', '0');
 
-                    if (platform === 'twitch') iframe.src = `https://www.twitch.tv/embed/${value}/chat?parent=https://chat-multistream.onrender.com/&darkpopout=true`;
+                    if (platform === 'twitch') iframe.src = `https://www.twitch.tv/embed/${value}/chat?parent=https:/chat-multistream.onrender.com/&darkpopout=true`;
                     if (platform === 'kick') iframe.src = `https://kick.com/${value}/chat`;
-                    if (platform === 'youtube') iframe.src = `https://www.youtube.com/live_chat?v=${value}&embed_domain=https://chat-multistream.onrender.com`;
+                    if (platform === 'youtube') iframe.src = `https://www.youtube.com/live_chat?v=${value}&embed_domain=https:/chat-multistream.onrender.com`;
 
                     // monta
                     wrapper.appendChild(header);
