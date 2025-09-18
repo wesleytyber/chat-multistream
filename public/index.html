@@ -41,10 +41,13 @@
                             <path d="M3 0 1 4v16h6v4h4l4-4h6l6-6V0H3zm18 12-3 3h-6l-4 4v-4H5V2h16v10z" />
                             <path d="M15 5h2v6h-2zm-5 0h2v6h-2z" />
                         </svg>
-                        Twitch:
+                        Twitch
                     </label>
                     <input type="text" id="twitchUser" placeholder="Nome do canal">
-                    <label><input type="checkbox" id="twitchToggle"> Mostrar Twitch</label>
+                    <label>
+                        <input type="checkbox" id="twitchToggle">
+                        <span id="twitchLabel">Ativar Twitch</span>
+                    </label>
                 </div>
                 <div class="chat-config">
                     <label>
@@ -52,10 +55,13 @@
                         <svg fill="#53FC18" viewBox="0 0 24 24">
                             <rect width="24" height="24" rx="4" />
                         </svg>
-                        Kick:
+                        Kick
                     </label>
                     <input type="text" id="kickUser" placeholder="Nome do canal">
-                    <label><input type="checkbox" id="kickToggle"> Mostrar Kick</label>
+                    <label>
+                        <input type="checkbox" id="kickToggle">
+                        <span id="kickLabel">Ativar Kick</span>
+                    </label>
                 </div>
                 <div class="chat-config">
                     <label>
@@ -64,10 +70,13 @@
                             <path
                                 d="M23.5 6.2s-.2-1.7-.9-2.4c-.9-.9-1.9-.9-2.4-1C16.7 2.5 12 2.5 12 2.5h-.1s-4.7 0-8.2.3c-.5.1-1.6.1-2.4 1-.7.7-.9 2.4-.9 2.4S0 8.1 0 10v1.9c0 1.9.2 3.8.2 3.8s.2 1.7.9 2.4c.9.9 2.1.9 2.6 1 1.9.2 7.9.3 7.9.3s4.7 0 8.2-.3c.5-.1 1.6-.1 2.4-1 .7-.7.9-2.4.9-2.4s.2-1.9.2-3.8V10c0-1.9-.2-3.8-.2-3.8zM9.5 14.7V7.7l6.5 3.5-6.5 3.5z" />
                         </svg>
-                        YouTube:
+                        YouTube
                     </label>
                     <input type="text" id="youtubeUser" placeholder="ID da live">
-                    <label><input type="checkbox" id="youtubeToggle"> Mostrar YouTube</label>
+                    <label>
+                        <input type="checkbox" id="youtubeToggle">
+                        <span id="youtubeLabel">Ativar YouTube</span>
+                    </label>
                 </div>
                 <div class="chat-config">
                     <label>
@@ -76,10 +85,13 @@
                             <path
                                 d="M12.7 2c1 .8 2.1 1.3 3.4 1.4V6c-.7 0-1.4-.2-2-.4V14c0 2.5-2 4.5-4.5 4.5S5 16.5 5 14s2-4.5 4.5-4.5c.3 0 .6 0 .8.1V12c-.3-.1-.5-.1-.8-.1-1.1 0-2 1-2 2s.9 2 2 2 2-1 2-2V2h3.2z" />
                         </svg>
-                        TikTok:
+                        TikTok
                     </label>
                     <input type="text" id="tiktokInput" placeholder="Indisponível no momento" disabled>
-                    <label><input type="checkbox" id="tiktokToggle"> Mostrar TikTok</label>
+                    <label>
+                        <input type="checkbox" id="tiktokToggle">
+                        <span id="tiktokLabel">Ativar TikTok</span>
+                    </label>
                 </div>
             </div>
         </div>
@@ -182,7 +194,6 @@
             }
         }
 
-        {/* // Listeners para abrir/fechar chat */ }
         ['twitch', 'kick', 'youtube', 'tiktok'].forEach(platform => {
             document.getElementById(platform + 'Toggle').addEventListener('change', () => handleChat(platform));
         });
@@ -198,6 +209,28 @@
             togglePanelBtn.style.transform = configPanel.classList.contains('show') ? 'translateX(-300px)' : 'translateX(0)';
         });
 
+
+        const toggles = [
+            { id: "twitchToggle", label: "twitchLabel", name: "Twitch" },
+            { id: "kickToggle", label: "kickLabel", name: "Kick" },
+            { id: "youtubeToggle", label: "youtubeLabel", name: "YouTube" },
+            { id: "tiktokToggle", label: "tiktokLabel", name: "TikTok" }
+        ];
+
+        toggles.forEach(({ id, label, name }) => {
+            const checkbox = document.getElementById(id);
+            const span = document.getElementById(label);
+
+            if (!checkbox || !span) return;
+
+            // Atualiza o texto conforme o estado inicial
+            span.textContent = checkbox.checked ? `Desativar ${name}` : `Ativar ${name}`;
+
+            // Atualiza sempre que mudar
+            checkbox.addEventListener("change", () => {
+                span.textContent = checkbox.checked ? `Desativar ${name}` : `Ativar ${name}`;
+            });
+        });
 
         // ----------------- Donate -----------------
         const donateBtn = document.getElementById('donateBtn');
