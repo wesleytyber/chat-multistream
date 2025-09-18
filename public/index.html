@@ -146,23 +146,7 @@
 
 
                     if (platform === 'twitch') {
-                        // Conecta via socket.io e exibe mensagens
-                        socket.emit('join-channel', value);
-
-                        socket.on('new-message', (msg) => {
-                            if (!chatDiv) return;
-                            const div = document.createElement('div');
-                            div.className = 'chat-message';
-                            div.innerHTML = `
-                            ${msg.badges.join(' ')} 
-                        <span class="username" style="color:${msg.color}">${msg.user}:</span> 
-                        <span class="message">${msg.message}</span>
-                    `;
-                            chatDiv.appendChild(div);
-                            chatDiv.scrollTop = chatDiv.scrollHeight;
-                            chatDiv.style.overflow = "hidden";
-                        });
-                        iframe.src = `https://www.twitch.tv/embed/${value}/chat?parent=chat-multistream.onrender.com`;
+                        iframe.src = `https://www.twitch.tv/embed/${value}/chat?darkpopout&parent=chat-multistream.onrender.com`;
                     }
 
                     wrapper.appendChild(iframe);
