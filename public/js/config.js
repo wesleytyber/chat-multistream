@@ -136,7 +136,7 @@ function copyUrl() {
     alert("Digite um nome de canal primeiro!");
     return;
   }
-  const url = `https://chat-multistream.onrender.com/chat.html?channel=${channel}`;
+  const url = `http://localhost:3000/chat.html?channel=${channel}`;
   obsUrlInput.value = url;
   navigator.clipboard.writeText(url);
   // alert("Overlay URL copiado!");

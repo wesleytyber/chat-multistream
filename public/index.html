@@ -9,7 +9,6 @@
 
 <body>
     <div class="app-wrapper">
-
         <div class="app-header-container">
             <h1 class="app-title">
                 <span class="icon">🌐</span>
@@ -32,7 +31,7 @@
                         </svg>
                         Twitch:
                     </label>
-                    <input type="text" id="twitchInput" placeholder="Nome do canal">
+                    <input type="text" id="twitchUser" placeholder="Nome do canal">
                     <label><input type="checkbox" id="twitchToggle"> Mostrar Twitch</label>
                 </div>
                 <div class="chat-config">
@@ -43,7 +42,7 @@
                         </svg>
                         Kick:
                     </label>
-                    <input type="text" id="kickInput" placeholder="Nome do canal">
+                    <input type="text" id="kickUser" placeholder="Nome do canal">
                     <label><input type="checkbox" id="kickToggle"> Mostrar Kick</label>
                 </div>
                 <div class="chat-config">
@@ -55,7 +54,7 @@
                         </svg>
                         YouTube:
                     </label>
-                    <input type="text" id="youtubeInput" placeholder="ID da live">
+                    <input type="text" id="youtubeUser" placeholder="ID da live">
                     <label><input type="checkbox" id="youtubeToggle"> Mostrar YouTube</label>
                 </div>
                 <div class="chat-config">
@@ -104,121 +103,116 @@
 
 
     </div>
-
+    <script src="/socket.io/socket.io.js"></script>
     <script>
+        const socket = io();
         const chatArea = document.getElementById('chatArea');
-        const configPanel = document.getElementById('configPanel');
-        const togglePanelBtn = document.getElementById('togglePanelBtn');
-        const menuToggle = document.getElementById('menuToggle');
-        const header = document.querySelector('.app-header-container');
-        let menuOpen = true;
+        const twitchIcon = '<img class="twitch-icon" src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Twitch_Glitch_Logo_Purple.svg" alt="Twitch">';
 
-        // SVGs inline para o header dos chats
-        const icons = {
-            twitch: `<svg fill="#9146FF" viewBox="0 0 24 24"><path d="M3 0 1 4v16h6v4h4l4-4h6l6-6V0H3zm18 12-3 3h-6l-4 4v-4H5V2h16v10z"/><path d="M15 5h2v6h-2zm-5 0h2v6h-2z"/></svg>`,
-            kick: `<svg fill="#53FC18" viewBox="0 0 24 24"><rect width="24" height="24" rx="4"/></svg>`,
-            youtube: `<svg fill="#FF0000" viewBox="0 0 24 24"><path d="M23.5 6.2s-.2-1.7-.9-2.4c-.9-.9-1.9-.9-2.4-1C16.7 2.5 12 2.5 12 2.5h-.1s-4.7 0-8.2.3c-.5.1-1.6.1-2.4 1-.7.7-.9 2.4-.9 2.4S0 8.1 0 10v1.9c0 1.9.2 3.8.2 3.8s.2 1.7.9 2.4c.9.9 2.1.9 2.6 1 1.9.2 7.9.3 7.9.3s4.7 0 8.2-.3c.5-.1 1.6-.1 2.4-1 .7-.7.9-2.4.9-2.4s.2-1.9.2-3.8V10c0-1.9-.2-3.8-.2-3.8zM9.5 14.7V7.7l6.5 3.5-6.5 3.5z"/></svg>`,
-            tiktok: `<svg fill="#fff" viewBox="0 0 24 24"><path d="M12.7 2c1 .8 2.1 1.3 3.4 1.4V6c-.7 0-1.4-.2-2-.4V14c0 2.5-2 4.5-4.5 4.5S5 16.5 5 14s2-4.5 4.5-4.5c.3 0 .6 0 .8.1V12c-.3-.1-.5-.1-.8-.1-1.1 0-2 1-2 2s.9 2 2 2 2-1 2-2V2h3.2z"/></svg>`
-        };
-
-        // Função para criar/remover chats dinamicamente
         function handleChat(platform) {
-            const input = document.getElementById(platform + 'Input');
+            const input = document.getElementById(platform + 'User');
             const toggle = document.getElementById(platform + 'Toggle');
             const value = input.value.trim();
-
-            if (platform === 'tiktok') {
-                alert("⚠️ Chat do TikTok temporariamente indisponível.");
-                toggle.checked = false; // volta o switch para OFF
-            }
-
-            if (!value) return alert(`Digite o ${platform === 'youtube' ? 'ID da live' : 'canal'}!`);
+            if (!value) return alert("Digite o nome do canal!");
 
             let existing = document.getElementById(platform + 'Wrapper');
 
             if (toggle.checked) {
                 if (!existing) {
-                    // cria container do chat
                     const wrapper = document.createElement('div');
-                    wrapper.className = "chat-wrapper";
+                    wrapper.className = 'chat-wrapper';
                     wrapper.id = platform + 'Wrapper';
 
-                    // cria header com ícone
                     const header = document.createElement('div');
-                    header.className = "chat-header";
-                    header.innerHTML = icons[platform] + " " + platform.charAt(0).toUpperCase() + platform.slice(1);
+                    header.className = 'chat-header';
+                    header.innerHTML = `${platform === 'twitch' ? twitchIcon : ''} ${platform.toUpperCase()} - ${value}`;
+
+                    const chatDiv = document.createElement('div');
+                    chatDiv.id = platform + 'Chat';
+                    chatDiv.className = 'chat-messages';
+
+                    wrapper.appendChild(header);
+                    wrapper.appendChild(chatDiv);
 
                     // cria iframe
                     const iframe = document.createElement('iframe');
                     iframe.id = platform + 'Chat';
                     iframe.setAttribute('frameborder', '0');
 
-                    if (platform === 'twitch') iframe.src = `https://www.twitch.tv/embed/${value}/chat?parent=https://chat-multistream.onrender.com&darkpopout=true`;
-                    if (platform === 'kick') iframe.src = `https://kick.com/${value}/chat`;
-                    if (platform === 'youtube') iframe.src = `https://www.youtube.com/live_chat?v=${value}&embed_domain=https://chat-multistream.onrender.com`;
 
-                    // monta
-                    wrapper.appendChild(header);
-                    wrapper.appendChild(iframe);
+                    if (platform === 'twitch') {
+                        // Conecta via socket.io e exibe mensagens
+                        socket.emit('join-channel', value);
+
+                        socket.on('new-message', (msg) => {
+                            if (!chatDiv) return;
+                            const div = document.createElement('div');
+                            div.className = 'chat-message';
+                            div.innerHTML = `
+                            ${msg.badges.join(' ')} 
+                        <span class="username" style="color:${msg.color}">${msg.user}:</span> 
+                        <span class="message">${msg.message}</span>
+                    `;
+                            chatDiv.appendChild(div);
+                            chatDiv.scrollTop = chatDiv.scrollHeight;
+                            chatDiv.style.overflow = "hidden";
+                        });
+                    }
+
+                    if (platform === 'kick') {
+                        wrapper.appendChild(iframe);
+                        iframe.src = `https://kick.com/${value}/chat`;
+                    }
+
+                    if (platform === 'youtube') chatDiv.innerHTML = `<iframe src="https://www.youtube.com/live_chat?v=${value}" frameborder="0"></iframe>`;
+
+                    if (platform === 'tiktok') {
+                        chatDiv.innerHTML = `<span>Coming Soon</span>`;
+                    }
+
                     chatArea.appendChild(wrapper);
+
                 }
             } else {
                 if (existing) existing.remove();
             }
         }
 
-
-        ['twitch', 'kick', 'youtube'].forEach(platform => {
+        {/* // Listeners para abrir/fechar chat */ }
+        ['twitch', 'kick', 'tiktok'].forEach(platform => {
             document.getElementById(platform + 'Toggle').addEventListener('change', () => handleChat(platform));
         });
+
+        const configPanel = document.getElementById('configPanel');
+        const togglePanelBtn = document.getElementById('togglePanelBtn');
+        let menuOpen = true;
 
         togglePanelBtn.addEventListener('click', () => {
             configPanel.classList.toggle('show');
             menuOpen = !menuOpen;
-
-            // Alterna ícone
             togglePanelBtn.textContent = menuOpen ? '⚙️' : '❌';
-
-            if (configPanel.classList.contains('show')) {
-                // Move o botão para a esquerda junto com o painel
-                togglePanelBtn.style.transform = 'translateX(-300px)';
-                // ou ajustar conforme largura do painel
-            } else {
-                // Volta para posição inicial
-                togglePanelBtn.style.transform = 'translateX(0)';
-            }
+            togglePanelBtn.style.transform = configPanel.classList.contains('show') ? 'translateX(-300px)' : 'translateX(0)';
         });
 
-        // DONATE
+        
+        // ----------------- Donate -----------------
         const donateBtn = document.getElementById('donateBtn');
         const donateModal = document.getElementById('donateModal');
         const closeBtn = document.getElementById('closeBtn');
         const pixQr = document.getElementById('pixQr');
         const pixKeyElement = document.getElementById('pixKey');
-
         const pixKey = "f91c3c69-0a2e-40cc-89ed-7c452314de7a";
-        const payload = "00020126580014br.gov.bcb.pix0136f91c3c69-0a2e-40cc-89ed-7c452314de7a5204000053039865802BR5922WESLEY CALAZANS SANTOS6009SAO PAULO62580520SAN2025091716481140250300017br.gov.bcb.brcode01051.0.063049FEC";
 
         donateBtn.onclick = () => {
             donateModal.style.display = "flex";
             pixKeyElement.textContent = pixKey;
-
-            // Limpa QR anterior
             pixQr.innerHTML = "";
-
-            // Gera QR Code com payload oficial
-            new QRCode(pixQr, {
-                text: pixKey,
-                width: 220,
-                height: 220
-            });
+            new QRCode(pixQr, { text: pixKey, width: 220, height: 220 });
         };
-
 
         closeBtn.onclick = () => donateModal.style.display = "none";
 
         window.onclick = (e) => { if (e.target == donateModal) donateModal.style.display = "none"; };
-
 
     </script>
 </body>
