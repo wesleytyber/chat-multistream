@@ -17,6 +17,11 @@
             </h1>
             <button class="menu-toggle" id="togglePanelBtn">⚙️</button>
         </div>
+<!-- 
+        <iframe src="https://www.twitch.tv/embed/gaules/chat?parent=chat-multistream.onrender.com" height="600" width="400"
+            frameborder="0">
+        </iframe> -->
+
         <!-- Main container: chats + painel -->
         <div class="app-container">
             <div class="chat-area" id="chatArea"></div>
@@ -157,10 +162,11 @@
                             chatDiv.scrollTop = chatDiv.scrollHeight;
                             chatDiv.style.overflow = "hidden";
                         });
+                        iframe.src = `https://www.twitch.tv/embed/${value}/chat?parent=chat-multistream.onrender.com`;
                     }
 
+                    wrapper.appendChild(iframe);
                     if (platform === 'kick') {
-                        wrapper.appendChild(iframe);
                         iframe.src = `https://kick.com/${value}/chat`;
                     }
 
@@ -194,7 +200,7 @@
             togglePanelBtn.style.transform = configPanel.classList.contains('show') ? 'translateX(-300px)' : 'translateX(0)';
         });
 
-        
+
         // ----------------- Donate -----------------
         const donateBtn = document.getElementById('donateBtn');
         const donateModal = document.getElementById('donateModal');
