@@ -5,26 +5,32 @@
     <meta charset="UTF-8">
     <title>Multi-Chat Overlay</title>
     <link rel="stylesheet" href="/css/multichat.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9547769843872493"
+        crossorigin="anonymous"></script>
 </head>
 
 <body>
     <div class="app-wrapper">
+
         <div class="app-header-container">
             <h1 class="app-title">
                 <span class="icon">🌐</span>
                 <span class="main">Multi Chat</span>
                 <span class="subtitle">— Moderação e Visualização</span>
             </h1>
-            <button class="menu-toggle" id="togglePanelBtn">⚙️</button>
+
+            <!-- Anúncio no header -->
+            <div class="header-ad">
+                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9547769843872493"
+                    data-ad-slot="1234567890" data-ad-format="horizontal" data-full-width-responsive="true"></ins>
+            </div>
+
         </div>
-<!-- 
-        <iframe src="https://www.twitch.tv/embed/gaules/chat?parent=chat-multistream.onrender.com" height="600" width="400"
-            frameborder="0">
-        </iframe> -->
+
+        <div class="chat-area" id="chatArea"></div>
 
         <!-- Main container: chats + painel -->
         <div class="app-container">
-            <div class="chat-area" id="chatArea"></div>
             <div class="config-panel" id="configPanel">
                 <h2>Configuração de chats</h2>
                 <div class="chat-config">
@@ -77,6 +83,9 @@
             </div>
         </div>
 
+        <!-- Botão fora do header e depois do painel -->
+        <button class="menu-toggle" id="togglePanelBtn">⚙️</button>
+
         <!-- Footer -->
         <footer class="app-footer">
             <div class="footer-text">Developed by Kalzan 2025</div>
@@ -105,10 +114,12 @@
                 <p>Ou direto pelo banco usando a Chave Pix: <strong id="pixKey"></strong></p>
             </div>
         </div>
-
-
     </div>
+
     <script src="/socket.io/socket.io.js"></script>
+    <!-- Script oficial do Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>(adsbygoogle = window.adsbygoogle);</script>
     <script>
         const socket = io();
         const chatArea = document.getElementById('chatArea');
@@ -155,7 +166,7 @@
                     }
 
                     if (platform === 'youtube') {
-                         iframe.src = `https://www.youtube.com/live_chat?v=${value}&embed_domain=chat-multistream.onrender.com`;
+                        iframe.src = `https://www.youtube.com/live_chat?v=${value}&embed_domain=chat-multistream.onrender.com`;
                     }
 
                     if (platform === 'tiktok') {

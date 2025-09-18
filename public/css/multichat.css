@@ -15,21 +15,34 @@
        }
 
        .app-wrapper {
-           display: flex;
-           flex-direction: column;
+           display: grid;
+           grid-template-areas:
+               "header header menu"
+               "chat chat menu"
+               "footer footer footer";
+           grid-template-rows: 100px auto 40px;
+           grid-template-columns: 300px 1fr;
            height: 100vh;
        }
 
        .app-header-container {
-           display: flex;
+           grid-area: header;
            justify-content: space-between;
            align-items: center;
-           /* garante alinhamento vertical */
-           padding: 10px 20px;
+           padding: 0px 20px;
            background: linear-gradient(90deg, #9146FF, #FF0000, #00BFFF, #69C9D0);
            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
            font-family: 'Arial', sans-serif;
            color: #fff;
+       }
+
+       .app-header-container,
+       header {
+           display: flex;
+           justify-content: space-between;
+           align-items: center;
+           padding: 0px 20px;
+           transition: padding-right 0.3s;
        }
 
        .app-header-container.menu-open {
@@ -94,15 +107,14 @@
 
        /* Conteúdo principal */
        .app-container {
+           grid-area: menu;
            display: flex;
-           height: calc(100vh - 60px);
-           flex: 1;
-           overflow: hidden;
-           position: relative;
+           height: calc(100vh - 40px);
        }
 
        /* Chat-area ocupa todo o espaço restante */
        .chat-area {
+           grid-area: chat;
            flex: 1;
            display: flex;
            gap: 20px;
@@ -118,24 +130,25 @@
            border: none;
        }
 
-       .app-header-container,
-       header {
-           display: flex;
-           justify-content: space-between;
-           align-items: center;
-           padding: 15px 20px;
-           transition: padding-right 0.3s;
-           /* animação do espaço do botão */
+       .menu-toggle {
+           position: fixed;
+           top: 10px;
+           right: 10px;
+           z-index: 1100;
+           padding: 10px 12px;
+           border: none;
+           border-radius: 8px;
+           background: #333;
+           color: #fff;
+           cursor: pointer;
+           transition: all 0.3s ease;
        }
 
-       .menu-toggle {
-           background: none;
-           border: none;
-           color: #00ffcc;
-           font-size: 1.5rem;
-           cursor: pointer;
-           margin-bottom: 10px;
-           transition: transform 0.3s;
+       /* Quando o painel estiver aberto, o botão vai colar na esquerda do painel */
+       .config-panel.open+.menu-toggle {
+           left: 260px;
+           /* largura do painel */
+           right: auto;
        }
 
        .menu-toggle:hover {
@@ -156,6 +169,7 @@
 
        /* Painel lateral */
        .config-panel {
+           /* grid-area: menu; */
            width: 0;
            /* inicia fechado */
            overflow: hidden;
@@ -272,6 +286,7 @@
 
        /* Footer */
        .app-footer {
+           grid-area: footer;
            background: #1f1f1f;
            border-top: 2px solid #333;
            padding: 10px 20px;
@@ -393,10 +408,51 @@
            vertical-align: middle;
        }
 
-        .chat-wrapper { margin: 10px 0; border: 1px solid #333; padding: 5px; }
-        .chat-header { font-weight: bold; margin-bottom: 5px; display: flex; align-items: center; gap: 5px; }
-        .chat-messages { max-height: 100vh; overflow-y: auto; margin-left: 10px; }
-        .chat-message { margin-bottom: 8px; }
-        .username { font-weight: bold; margin-right: 3px; }
-        .twitch-icon { width: 16px; height: 16px; vertical-align: middle; }
-        .badge { width: 16px; height: 16px; vertical-align: middle; margin-right: 2px; }
+       .chat-wrapper {
+           margin: 10px 0;
+           border: 1px solid #333;
+           padding: 5px;
+       }
+
+       .chat-header {
+           font-weight: bold;
+           margin-bottom: 5px;
+           display: flex;
+           align-items: center;
+           gap: 5px;
+       }
+
+       .chat-messages {
+           max-height: 100vh;
+           overflow-y: auto;
+           margin-left: 10px;
+       }
+
+       .chat-message {
+           margin-bottom: 8px;
+       }
+
+       .username {
+           font-weight: bold;
+           margin-right: 3px;
+       }
+
+       .twitch-icon {
+           width: 16px;
+           height: 16px;
+           vertical-align: middle;
+       }
+
+       .badge {
+           width: 16px;
+           height: 16px;
+           vertical-align: middle;
+           margin-right: 2px;
+       }
+
+       .header-ad {
+           flex-shrink: 0;
+           margin-left: auto;
+           width: 600px;
+           height: 100px;
+       }
