@@ -154,7 +154,9 @@
                         iframe.src = `https://kick.com/${value}/chat`;
                     }
 
-                    if (platform === 'youtube') chatDiv.innerHTML = `<iframe src="https://www.youtube.com/live_chat?v=${value}" frameborder="0"></iframe>`;
+                    if (platform === 'youtube') {
+                         iframe.src = `https://www.youtube.com/live_chat?v=${value}&embed_domain=chat-multistream.onrender.com`;
+                    }
 
                     if (platform === 'tiktok') {
                         chatDiv.innerHTML = `<span>Coming Soon</span>`;
@@ -169,7 +171,7 @@
         }
 
         {/* // Listeners para abrir/fechar chat */ }
-        ['twitch', 'kick', 'tiktok'].forEach(platform => {
+        ['twitch', 'kick', 'youtube', 'tiktok'].forEach(platform => {
             document.getElementById(platform + 'Toggle').addEventListener('change', () => handleChat(platform));
         });
 
