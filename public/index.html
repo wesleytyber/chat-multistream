@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Multi-Chat Overlay</title>
+    <title>Multi-Chat</title>
     <link rel="stylesheet" href="/css/multichat.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9547769843872493"
         crossorigin="anonymous"></script>
@@ -136,8 +136,10 @@
     <script>
         const socket = io();
         const chatArea = document.getElementById('chatArea');
-        const twitchIcon = '<img class="twitch-icon" src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Twitch_Glitch_Logo_Purple.svg" alt="Twitch">';
-
+        const twitchIcon = '<img class="twitch-icon" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Twitch_logo_2019.svg/1024px-Twitch_logo_2019.svg.png?20200326164935" alt="Twitch">';
+        const kickIcon = '<img class="kick-icon" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Kick_logo.svg/1599px-Kick_logo.svg.png?20230628205512" alt="Kick">';
+        const youtubeIcon = '<img class="youtube-icon" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/YouTube_Logo_2017.svg/1024px-YouTube_Logo_2017.svg.png?20230929095411" alt="Youtube">';
+        
         function handleChat(platform) {
             const input = document.getElementById(platform + 'User');
             const toggle = document.getElementById(platform + 'Toggle');
@@ -154,8 +156,12 @@
 
                     const header = document.createElement('div');
                     header.className = 'chat-header';
-                    header.innerHTML = `${platform === 'twitch' ? twitchIcon : ''} ${platform.toUpperCase()} - ${value}`;
-
+                    let icon = '';
+                    if (platform === 'twitch') icon = twitchIcon;
+                    if (platform === 'kick') icon = kickIcon;
+                    if (platform === 'youtube') icon = youtubeIcon;
+                    header.innerHTML = `${icon} ${platform.toUpperCase()} - ${value}`;
+                    
                     const chatDiv = document.createElement('div');
                     chatDiv.id = platform + 'Chat';
                     chatDiv.className = 'chat-messages';
@@ -170,7 +176,7 @@
 
 
                     if (platform === 'twitch') {
-                        iframe.src = `https://www.twitch.tv/embed/${value}/chat?darkpopout&parent=chat-multistream.onrender.com`;
+                        iframe.src = `https://www.twitch.tv/embed/${value}/chat?darkpopout&parent=kalzan.com`;
                     }
 
                     wrapper.appendChild(iframe);
@@ -179,7 +185,7 @@
                     }
 
                     if (platform === 'youtube') {
-                        iframe.src = `https://www.youtube.com/live_chat?v=${value}&embed_domain=chat-multistream.onrender.com`;
+                        iframe.src = `https://www.youtube.com/live_chat?v=${value}&embed_domain=kalzan.com`;
                     }
 
                     if (platform === 'tiktok') {
