@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Multi-Chat</title>
+    <link rel="icon" type="image/png" href="/assets/favicon.png">
     <link rel="stylesheet" href="/css/multichat.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9547769843872493"
         crossorigin="anonymous"></script>
@@ -25,7 +26,6 @@
                 <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9547769843872493"
                     data-ad-slot="1234567890" data-ad-format="horizontal" data-full-width-responsive="true"></ins>
             </div>
-
         </div>
 
         <div class="chat-area" id="chatArea"></div>
@@ -39,7 +39,6 @@
                     <img class="twitch-icon"
                         src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Twitch_logo_2019.svg/1024px-Twitch_logo_2019.svg.png?20200326164935"
                         alt="Twitch">
-
                     <input type="text" id="twitchUser" placeholder="Nome do canal">
                     <label>
                         <input type="checkbox" id="twitchToggle">
@@ -212,20 +211,20 @@
                     iframe.setAttribute('frameborder', '0');
 
                     if (platform === 'twitch') {
-                        iframe.src = `https://www.twitch.tv/embed/${value}/chat?darkpopout&parent=kalzan.com`;
+                        iframe.src = `https://www.twitch.tv/embed/${value}/chat?darkpopout&parent=kalzan.com&parent=chat-multistream.onrender.com`;
                     }
 
                     wrapper.appendChild(iframe);
                     if (platform === 'kick') {
-                        iframe.src = `https://kick.com/${value}/chat`;
+                        iframe.src = `https://kick.com/popout/${value}/chat`;
                     }
 
                     if (platform === 'youtube') {
-                        iframe.src = `https://www.youtube.com/live_chat?v=${value}&embed_domain=kalzan.com`;
+                        iframe.src = `https://www.youtube.com/live_chat?v=${value}&embed_domain=kalzan.com&parent=chat-multistream.onrender.com`;
                     }
 
                     if (platform === 'tiktok') {
-                        iframe.src = ``;
+                        iframe.src = `https://www.tiktok.com/@${value}/live?enter_from_merge=pc_share&enter_method=pc_share&is_from_webapp=1&sender_device=pc`;
                     }
 
                     chatArea.appendChild(wrapper);
