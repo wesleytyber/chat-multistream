@@ -160,7 +160,7 @@
                     if (platform === 'twitch') icon = twitchIcon;
                     if (platform === 'kick') icon = kickIcon;
                     if (platform === 'youtube') icon = youtubeIcon;
-                    header.innerHTML = `${icon} ${platform.toUpperCase()} - ${value}`;
+                    header.innerHTML = `${icon} - ${value}`;
                     
                     const chatDiv = document.createElement('div');
                     chatDiv.id = platform + 'Chat';
@@ -173,8 +173,7 @@
                     const iframe = document.createElement('iframe');
                     iframe.id = platform + 'Chat';
                     iframe.setAttribute('frameborder', '0');
-
-
+                    
                     if (platform === 'twitch') {
                         iframe.src = `https://www.twitch.tv/embed/${value}/chat?darkpopout&parent=kalzan.com`;
                     }
