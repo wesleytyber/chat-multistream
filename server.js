@@ -1,9 +1,7 @@
 import express from 'express';
 import http from 'http';
 import { Server } from 'socket.io';
-import path from 'path';
 import tmi from 'tmi.js';
-import { fileURLToPath } from 'url';
 
 const app = express();
 const server = http.createServer(app);

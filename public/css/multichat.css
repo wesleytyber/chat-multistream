@@ -175,28 +175,16 @@ body {
     gap: 6px;
     padding: 6px 10px;
     background: #111;
+    text-align: center;
     border-bottom: 1px solid #333;
     font-weight: bold;
     color: #fff;
-}
-
-.chat-header svg {
-    width: 18px;
-    height: 18px;
 }
 
 iframe {
     flex: 1;
     border: none;
     width: 100%;
-}
-
-/* Ícones no menu */
-.chat-config label svg {
-    width: 16px;
-    height: 16px;
-    vertical-align: middle;
-    margin-right: 6px;
 }
 
 .chat-config {
@@ -463,22 +451,33 @@ iframe {
 }
 
 .twitch-icon {
-    width: 24px;
-    height: 16px;
+    width: auto;
+    height: 24px;
+    align-self: start;
     vertical-align: middle;
 }
 
 .kick-icon {
-    width: 24px;
-    height: 16px;
+    width: auto;
+    height: 24px;
+    align-self: start;
     vertical-align: middle;
 }
 
 .youtube-icon {
-    width: 24px;
-    height: 16px;
+    width: auto;
+    height: 24px;
+    align-self: start;
     vertical-align: middle;
 }
+
+.tiktok-icon {
+    width: auto;
+    height: 24px;
+    align-self: start;
+    vertical-align: middle;
+}
+
 .badge {
     width: 16px;
     height: 16px;

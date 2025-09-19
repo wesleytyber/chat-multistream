@@ -35,14 +35,11 @@
             <div class="config-panel" id="configPanel">
                 <h2>Configuração de chats</h2>
                 <div class="chat-config">
-                    <label>
-                        <!-- Twitch SVG -->
-                        <svg fill="#9146FF" viewBox="0 0 24 24">
-                            <path d="M3 0 1 4v16h6v4h4l4-4h6l6-6V0H3zm18 12-3 3h-6l-4 4v-4H5V2h16v10z" />
-                            <path d="M15 5h2v6h-2zm-5 0h2v6h-2z" />
-                        </svg>
-                        Twitch
-                    </label>
+                    <!-- Twitch SVG -->
+                    <img class="twitch-icon"
+                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Twitch_logo_2019.svg/1024px-Twitch_logo_2019.svg.png?20200326164935"
+                        alt="Twitch">
+
                     <input type="text" id="twitchUser" placeholder="Nome do canal">
                     <label>
                         <input type="checkbox" id="twitchToggle">
@@ -50,13 +47,8 @@
                     </label>
                 </div>
                 <div class="chat-config">
-                    <label>
-                        <!-- Kick SVG (verde) -->
-                        <svg fill="#53FC18" viewBox="0 0 24 24">
-                            <rect width="24" height="24" rx="4" />
-                        </svg>
-                        Kick
-                    </label>
+                    <!-- Kick SVG (verde) -->
+                    <img class="kick-icon" src="https://kick.com/img/kick-logo.svg" alt="Kick Logo">
                     <input type="text" id="kickUser" placeholder="Nome do canal">
                     <label>
                         <input type="checkbox" id="kickToggle">
@@ -64,14 +56,10 @@
                     </label>
                 </div>
                 <div class="chat-config">
-                    <label>
-                        <!-- YouTube SVG -->
-                        <svg fill="#FF0000" viewBox="0 0 24 24">
-                            <path
-                                d="M23.5 6.2s-.2-1.7-.9-2.4c-.9-.9-1.9-.9-2.4-1C16.7 2.5 12 2.5 12 2.5h-.1s-4.7 0-8.2.3c-.5.1-1.6.1-2.4 1-.7.7-.9 2.4-.9 2.4S0 8.1 0 10v1.9c0 1.9.2 3.8.2 3.8s.2 1.7.9 2.4c.9.9 2.1.9 2.6 1 1.9.2 7.9.3 7.9.3s4.7 0 8.2-.3c.5-.1 1.6-.1 2.4-1 .7-.7.9-2.4.9-2.4s.2-1.9.2-3.8V10c0-1.9-.2-3.8-.2-3.8zM9.5 14.7V7.7l6.5 3.5-6.5 3.5z" />
-                        </svg>
-                        YouTube
-                    </label>
+                    <!-- YouTube -->
+                    <img class="youtube-icon"
+                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/YouTube_dark_logo_2017.svg/640px-YouTube_dark_logo_2017.svg.png"
+                        alt="YouTube">
                     <input type="text" id="youtubeUser" placeholder="ID da live">
                     <label>
                         <input type="checkbox" id="youtubeToggle">
@@ -79,15 +67,35 @@
                     </label>
                 </div>
                 <div class="chat-config">
-                    <label>
-                        <!-- TikTok SVG -->
-                        <svg fill="#fff" viewBox="0 0 24 24">
-                            <path
-                                d="M12.7 2c1 .8 2.1 1.3 3.4 1.4V6c-.7 0-1.4-.2-2-.4V14c0 2.5-2 4.5-4.5 4.5S5 16.5 5 14s2-4.5 4.5-4.5c.3 0 .6 0 .8.1V12c-.3-.1-.5-.1-.8-.1-1.1 0-2 1-2 2s.9 2 2 2 2-1 2-2V2h3.2z" />
-                        </svg>
-                        TikTok
-                    </label>
-                    <input type="text" id="tiktokInput" placeholder="Indisponível no momento" disabled>
+                    <!-- TikTok SVG -->
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 118 30" alt="TikTok"
+                        height="30" width="118" class="tiktok-icon">
+                        <path fill="#25F4EE"
+                            d="M9.875 11.842v-1.119A9 9 0 0 0 8.7 10.64c-4.797-.006-8.7 3.9-8.7 8.708a8.7 8.7 0 0 0 3.718 7.134A8.68 8.68 0 0 1 1.38 20.55c0-4.737 3.794-8.598 8.495-8.707">
+                        </path>
+                        <path fill="#25F4EE"
+                            d="M10.087 24.526c2.14 0 3.89-1.707 3.966-3.83l.007-18.968h3.462a7 7 0 0 1-.109-1.202h-4.727l-.006 18.968a3.98 3.98 0 0 1-3.967 3.83 3.9 3.9 0 0 1-1.846-.46 3.95 3.95 0 0 0 3.22 1.662m13.905-16.36V7.111a6.5 6.5 0 0 1-3.584-1.067 6.57 6.57 0 0 0 3.584 2.122">
+                        </path>
+                        <path fill="#FE2C55"
+                            d="M20.41 6.044a6.54 6.54 0 0 1-1.617-4.316h-1.265a6.56 6.56 0 0 0 2.881 4.316M8.707 15.365a3.98 3.98 0 0 0-3.974 3.976c0 1.528.87 2.858 2.134 3.523a3.94 3.94 0 0 1-.754-2.321 3.98 3.98 0 0 1 3.973-3.976c.41 0 .805.07 1.176.185v-4.833a9 9 0 0 0-1.176-.083c-.07 0-.134.006-.204.006v3.708a4 4 0 0 0-1.175-.185">
+                        </path>
+                        <path fill="#FE2C55"
+                            d="M23.992 8.166v3.676a11.25 11.25 0 0 1-6.579-2.116v9.622c0 4.8-3.903 8.713-8.706 8.713a8.67 8.67 0 0 1-4.99-1.579 8.7 8.7 0 0 0 6.37 2.781c4.797 0 8.706-3.906 8.706-8.714v-9.621a11.25 11.25 0 0 0 6.579 2.116v-4.73q-.718-.002-1.38-.148">
+                        </path>
+                        <path fill="#fff"
+                            d="M17.413 19.348V9.726a11.25 11.25 0 0 0 6.58 2.116V8.166a6.57 6.57 0 0 1-3.584-2.122 6.6 6.6 0 0 1-2.887-4.316h-3.463l-.006 18.968a3.98 3.98 0 0 1-3.967 3.83 3.99 3.99 0 0 1-3.225-1.656 3.99 3.99 0 0 1-2.134-3.523A3.98 3.98 0 0 1 8.7 15.372c.409 0 .805.07 1.176.185v-3.708c-4.702.103-8.496 3.964-8.496 8.701 0 2.29.888 4.373 2.338 5.933a8.67 8.67 0 0 0 4.989 1.58c4.797 0 8.706-3.913 8.706-8.715M30.048 8.179h14.775l-1.355 4.232h-3.832v15.644h-4.778V12.41l-4.804.006zm38.984 0h15.12l-1.354 4.232h-4.172v15.644h-4.784V12.41l-4.803.006zM45.73 14.502h4.733v13.553h-4.708zm6.617-6.374h4.733v9.257l4.689-4.61h5.647l-5.934 5.76 6.643 9.52h-5.213l-4.433-6.598-1.405 1.362v5.236h-4.733V8.128zm50.143 0h4.734v9.257l4.688-4.61h5.647l-5.934 5.76 6.643 9.52h-5.206l-4.433-6.598-1.405 1.362v5.236h-4.734zm-54.396 4.826a2.384 2.384 0 1 0-.002-4.771 2.384 2.384 0 0 0 .002 4.771">
+                        </path>
+                        <path fill="#25F4EE"
+                            d="M83.545 19.942a8.11 8.11 0 0 1 7.473-8.087 9 9 0 0 0-.709-.026c-4.478 0-8.106 3.631-8.106 8.113s3.628 8.113 8.106 8.113c.21 0 .498-.013.71-.026-4.178-.326-7.475-3.823-7.475-8.087">
+                        </path>
+                        <path fill="#FE2C55"
+                            d="M92.858 11.83c-.217 0-.505.012-.715.025a8.11 8.11 0 0 1 7.467 8.087 8.11 8.11 0 0 1-7.467 8.087c.21.02.498.026.715.026 4.478 0 8.106-3.631 8.106-8.113s-3.628-8.113-8.106-8.113">
+                        </path>
+                        <path fill="#fff"
+                            d="M91.58 23.887a3.94 3.94 0 0 1-3.94-3.945 3.94 3.94 0 1 1 7.882 0c0 2.18-1.77 3.945-3.941 3.945m0-12.058c-4.477 0-8.105 3.631-8.105 8.113s3.628 8.113 8.106 8.113 8.106-3.631 8.106-8.113-3.629-8.113-8.106-8.113">
+                        </path>
+                    </svg>
+                    <input type="text" id="tiktokUser" placeholder="Indisponível no momento" disabled>
                     <label>
                         <input type="checkbox" id="tiktokToggle">
                         <span id="tiktokLabel">Ativar TikTok</span>
@@ -138,8 +146,36 @@
         const chatArea = document.getElementById('chatArea');
         const twitchIcon = '<img class="twitch-icon" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Twitch_logo_2019.svg/1024px-Twitch_logo_2019.svg.png?20200326164935" alt="Twitch">';
         const kickIcon = '<img class="kick-icon" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Kick_logo.svg/1599px-Kick_logo.svg.png?20230628205512" alt="Kick">';
-        const youtubeIcon = '<img class="youtube-icon" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/YouTube_Logo_2017.svg/1024px-YouTube_Logo_2017.svg.png?20230929095411" alt="Youtube">';
-        
+        const youtubeIcon = '<img class="youtube-icon" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/YouTube_dark_logo_2017.svg/640px-YouTube_dark_logo_2017.svg.png" alt="Youtube">';
+        const tiktokIcon = `
+<svg xmlns="http://www.w3.org/2000/svg" 
+     fill="currentColor" 
+     viewBox="0 0 118 30" 
+     height="42" 
+     preserveAspectRatio="xMidYMid meet"
+     class="tiktok-icon">
+  <path fill="#25F4EE" d="M9.875 11.842v-1.119A9 9 0 0 0 8.7 10.64c-4.797-.006-8.7 3.9-8.7 8.708a8.7 8.7 0 0 0 3.718 7.134A8.68 8.68 0 0 1 1.38 20.55c0-4.737 3.794-8.598 8.495-8.707"/>
+  <path fill="#25F4EE" d="M10.087 24.526c2.14 0 3.89-1.707 3.966-3.83l.007-18.968h3.462a7 7 0 0 1-.109-1.202h-4.727l-.006 18.968a3.98 3.98 0 0 1-3.967 3.83 3.9 3.9 0 0 1-1.846-.46 3.95 3.95 0 0 0 3.22 1.662"/>
+  <path fill="#FE2C55" d="M20.41 6.044a6.54 6.54 0 0 1-1.617-4.316h-1.265a6.56 6.56 0 0 0 2.881 4.316M8.707 15.365a3.98 3.98 0 0 0-3.974 3.976c0 1.528.87 2.858 2.134 3.523a3.94 3.94 0 0 1-.754-2.321 3.98 3.98 0 0 1 3.973-3.976c.41 0 .805.07 1.176.185v-4.833a9 9 0 0 0-1.176-.083c-.07 0-.134.006-.204.006v3.708a4 4 0 0 0-1.175-.185">
+                        </path>
+                        <path fill="#FE2C55"
+                            d="M23.992 8.166v3.676a11.25 11.25 0 0 1-6.579-2.116v9.622c0 4.8-3.903 8.713-8.706 8.713a8.67 8.67 0 0 1-4.99-1.579 8.7 8.7 0 0 0 6.37 2.781c4.797 0 8.706-3.906 8.706-8.714v-9.621a11.25 11.25 0 0 0 6.579 2.116v-4.73q-.718-.002-1.38-.148">
+                        </path>
+                        <path fill="#fff"
+                            d="M17.413 19.348V9.726a11.25 11.25 0 0 0 6.58 2.116V8.166a6.57 6.57 0 0 1-3.584-2.122 6.6 6.6 0 0 1-2.887-4.316h-3.463l-.006 18.968a3.98 3.98 0 0 1-3.967 3.83 3.99 3.99 0 0 1-3.225-1.656 3.99 3.99 0 0 1-2.134-3.523A3.98 3.98 0 0 1 8.7 15.372c.409 0 .805.07 1.176.185v-3.708c-4.702.103-8.496 3.964-8.496 8.701 0 2.29.888 4.373 2.338 5.933a8.67 8.67 0 0 0 4.989 1.58c4.797 0 8.706-3.913 8.706-8.715M30.048 8.179h14.775l-1.355 4.232h-3.832v15.644h-4.778V12.41l-4.804.006zm38.984 0h15.12l-1.354 4.232h-4.172v15.644h-4.784V12.41l-4.803.006zM45.73 14.502h4.733v13.553h-4.708zm6.617-6.374h4.733v9.257l4.689-4.61h5.647l-5.934 5.76 6.643 9.52h-5.213l-4.433-6.598-1.405 1.362v5.236h-4.733V8.128zm50.143 0h4.734v9.257l4.688-4.61h5.647l-5.934 5.76 6.643 9.52h-5.206l-4.433-6.598-1.405 1.362v5.236h-4.734zm-54.396 4.826a2.384 2.384 0 1 0-.002-4.771 2.384 2.384 0 0 0 .002 4.771">
+                        </path>
+                        <path fill="#25F4EE"
+                            d="M83.545 19.942a8.11 8.11 0 0 1 7.473-8.087 9 9 0 0 0-.709-.026c-4.478 0-8.106 3.631-8.106 8.113s3.628 8.113 8.106 8.113c.21 0 .498-.013.71-.026-4.178-.326-7.475-3.823-7.475-8.087">
+                        </path>
+                        <path fill="#FE2C55"
+                            d="M92.858 11.83c-.217 0-.505.012-.715.025a8.11 8.11 0 0 1 7.467 8.087 8.11 8.11 0 0 1-7.467 8.087c.21.02.498.026.715.026 4.478 0 8.106-3.631 8.106-8.113s-3.628-8.113-8.106-8.113">
+                        </path>
+                        <path fill="#fff"
+                            d="M91.58 23.887a3.94 3.94 0 0 1-3.94-3.945 3.94 3.94 0 1 1 7.882 0c0 2.18-1.77 3.945-3.941 3.945m0-12.058c-4.477 0-8.105 3.631-8.105 8.113s3.628 8.113 8.106 8.113 8.106-3.631 8.106-8.113-3.629-8.113-8.106-8.113">
+                        </path>
+</svg>
+`;
+
         function handleChat(platform) {
             const input = document.getElementById(platform + 'User');
             const toggle = document.getElementById(platform + 'Toggle');
@@ -160,8 +196,9 @@
                     if (platform === 'twitch') icon = twitchIcon;
                     if (platform === 'kick') icon = kickIcon;
                     if (platform === 'youtube') icon = youtubeIcon;
+                    if (platform === 'tiktok') icon = tiktokIcon;
                     header.innerHTML = `${icon} - ${value}`;
-                    
+
                     const chatDiv = document.createElement('div');
                     chatDiv.id = platform + 'Chat';
                     chatDiv.className = 'chat-messages';
@@ -173,7 +210,7 @@
                     const iframe = document.createElement('iframe');
                     iframe.id = platform + 'Chat';
                     iframe.setAttribute('frameborder', '0');
-                    
+
                     if (platform === 'twitch') {
                         iframe.src = `https://www.twitch.tv/embed/${value}/chat?darkpopout&parent=kalzan.com`;
                     }
@@ -188,7 +225,7 @@
                     }
 
                     if (platform === 'tiktok') {
-                        chatDiv.innerHTML = `<span>Coming Soon</span>`;
+                        iframe.src = ``;
                     }
 
                     chatArea.appendChild(wrapper);
@@ -228,13 +265,13 @@
 
             if (!checkbox || !span) return;
 
-            // Atualiza o texto conforme o estado inicial
-            span.textContent = checkbox.checked ? `Desativar ${name}` : `Ativar ${name}`;
-
-            // Atualiza sempre que mudar
-            checkbox.addEventListener("change", () => {
+            const updateToggle = () => {
                 span.textContent = checkbox.checked ? `Desativar ${name}` : `Ativar ${name}`;
-            });
+                checkbox.style.backgroundColor = checkbox.checked ? "rgba(0, 128, 0, 0.5)" : "rgba(255, 0, 0, 0.5)"; // verde e vermelho com opacidade 0.5
+            };
+
+            updateToggle();
+            checkbox.addEventListener("change", updateToggle);
         });
 
         // ----------------- Donate -----------------
