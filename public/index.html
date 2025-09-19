@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Multi-Chat</title>
+    <title>Chat Dashboard by Kalzan</title>
     <link rel="icon" type="image/png" href="/assets/favicon.png">
     <link rel="stylesheet" href="/css/multichat.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9547769843872493"
@@ -28,7 +28,13 @@
             </div>
         </div>
 
-        <div class="chat-area" id="chatArea"></div>
+        <div class="chat-area" id="chatArea">
+            <div id="no-chat-placeholder">
+                <h1 class="emptyTitle">Nenhum chat adicionado ainda.</h1>
+                <span class="emptySubtitle">Use o painel à direita para ativar Twitch, YouTube ou Kick.</span>
+                <button id="openPanelBtn">Adicionar chat</button>
+            </div>
+        </div>
 
         <!-- Main container: chats + painel -->
         <div class="app-container">
@@ -229,9 +235,32 @@
 
                     chatArea.appendChild(wrapper);
 
+                    // remove placeholder de empty chat
+                    const emptyChat = document.getElementById('no-chat-placeholder');
+                    if (emptyChat) emptyChat.remove();
                 }
             } else {
                 if (existing) existing.remove();
+
+                const anyChatLeft = chatArea.querySelector('.chat-wrapper');
+                if (!anyChatLeft) {
+                    const placeholder = document.createElement('div');
+                    placeholder.id = 'no-chat-placeholder';
+
+                    placeholder.innerHTML = `
+        <h1 class="emptyTitle">Nenhum chat adicionado ainda.</h1>
+        <span class="emptySubtitle">Use o painel à direita para ativar Twitch, YouTube ou Kick.</span>
+        <button id="openPanelBtn">Adicionar chat</button>
+    `;
+                    chatArea.appendChild(placeholder);
+
+                    // adiciona listener ao botão criado dinamicamente
+                    const openPanelBtn = document.getElementById('openPanelBtn');
+                    openPanelBtn.addEventListener('click', () => {
+                        // aqui você pode abrir o painel ou disparar a função que quiser
+                        togglePanel(); // ou sua função de abrir painel
+                    });
+                }
             }
         }
 
@@ -239,18 +268,22 @@
             document.getElementById(platform + 'Toggle').addEventListener('change', () => handleChat(platform));
         });
 
+        // ----------------- ABRIR O MENU LATERAL -----------------
         const configPanel = document.getElementById('configPanel');
         const togglePanelBtn = document.getElementById('togglePanelBtn');
         let menuOpen = true;
 
-        togglePanelBtn.addEventListener('click', () => {
+        function togglePanel() {
             configPanel.classList.toggle('show');
             menuOpen = !menuOpen;
             togglePanelBtn.textContent = menuOpen ? '⚙️' : '❌';
             togglePanelBtn.style.transform = configPanel.classList.contains('show') ? 'translateX(-300px)' : 'translateX(0)';
-        });
+        }
 
-
+        togglePanelBtn.addEventListener('click', togglePanel);
+        openPanelBtn.addEventListener('click', togglePanel);
+        w
+        // ----------------- ATIVAR E DESATIVAR CHAT NO MENU LATERAL -----------------
         const toggles = [
             { id: "twitchToggle", label: "twitchLabel", name: "Twitch" },
             { id: "kickToggle", label: "kickLabel", name: "Kick" },
@@ -273,7 +306,7 @@
             checkbox.addEventListener("change", updateToggle);
         });
 
-        // ----------------- Donate -----------------
+        // ----------------- DONATE -----------------
         const donateBtn = document.getElementById('donateBtn');
         const donateModal = document.getElementById('donateModal');
         const closeBtn = document.getElementById('closeBtn');

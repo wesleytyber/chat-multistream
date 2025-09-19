@@ -53,6 +53,11 @@ io.on('connection', (socket) => {
   });
 });
 
+// Rota para ads.txt
+app.get('/ads.txt', (req, res) => {
+    res.sendFile(path.join(__dirname, 'ads.txt'));
+});
+
 server.listen(3000, () => {
   console.log('Servidor rodando em http://localhost:3000');
 });
