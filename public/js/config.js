@@ -95,9 +95,9 @@ function updateCSS() {
 
 function updateConfig(id, value) {
   if (id === "usernameBgTransparent") {
-    config.usernameBg = value ? "transparent" : usernameBg.value;
+    config.usernameBg = !value ? "transparent" : usernameBg.value;
   } else if (id === "messageBgTransparent") {
-    config.messageBg = value ? "transparent" : messageBg.value;
+    config.messageBg = !value ? "transparent" : messageBg.value;
   } else {
     config[id] = value;
   }
