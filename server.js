@@ -55,12 +55,12 @@ io.on('connection', (socket) => {
 
 // Rota para ads.txt
 app.get('/ads.txt', (req, res) => {
-    res.sendFile(path.join(__dirname, 'ads.txt'));
+  res.sendFile(path.join(__dirname, 'ads.txt'));
 });
 
 // Rota da página de doação
 app.get('/donate', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'donate.html'));
+  res.sendFile(path.join(__dirname, 'public', 'donate.html'));
 });
 
 server.listen(3000, () => {

@@ -31,6 +31,15 @@
       --glass: rgba(0, 0, 0, 0.03);
   }
 
+  /* Títulos/destaques */
+  h1,
+  h2,
+  h3,
+  .app-title {
+      font-family: 'Orbitron', sans-serif;
+      letter-spacing: 0.5px;
+  }
+
   .app {
       display: flex;
       flex: 1;
@@ -121,7 +130,7 @@
       cursor: grab;
   }
 
-  body.light .chat-card{
+  body.light .chat-card {
       border: 1px solid rgba(0, 0, 0, 0.1);
   }
 
@@ -175,11 +184,37 @@
   }
 
   .e-box {
+      position: relative;
       display: flex;
       align-items: center;
       gap: 12px;
       border-radius: 10px;
       padding: 12px;
+  }
+
+  /* TIKTOK overlay cobrindo todo o bloco */
+  .e-box .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.3);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      font-size: 12px;
+      border-radius: 8px;
+      pointer-events: none;
+  }
+
+  /* TIKTOK desabilitar inputs visualmente */
+  .e-box.unavailable input,
+  .e-box.unavailable .switch-container input {
+      cursor: not-allowed;
+      opacity: 0.6;
   }
 
   .e-box .platform-icon {
@@ -452,4 +487,9 @@
 
   body.light .inDjkad {
       fill: #000000;
+  }
+
+  .tiktok-14lht3 {
+      width: 50px;
+      height: 50px;
   }
