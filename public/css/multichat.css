@@ -10,6 +10,7 @@
       --glass: rgba(255, 255, 255, 0.04);
       --color-white: #ffffff;
       --color-fill-brand: #a970ff;
+      --svg-close-color: #fff;
   }
 
   body {
@@ -29,6 +30,7 @@
       color: #0b1220;
       --muted: #44516a;
       --glass: rgba(0, 0, 0, 0.03);
+      --svg-close-color: #000;
   }
 
   /* Títulos/destaques */
@@ -148,12 +150,16 @@
   }
 
   .chat-actions button {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
+      color: var(--svg-close-color);
+      background: transparent;
       border: none;
-      background: var(--glass);
       cursor: pointer;
+      padding: 4px;
+  }
+
+  .chat-actions .svg-close {
+      width: 24px;
+      height: 24px;
   }
 
   .chat-header {
