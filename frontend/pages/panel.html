@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Multistream Chat Widget</title>
+    <link rel="stylesheet" href="../assets/css/panel.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="card-config">
+            <div class="config-section">
+                <h3>General</h3>
+                <label>Spacing <input type="range" id="spacing" min="0" max="50"></label>
+                <label>Margins <input type="range" id="margins" min="0" max="50"></label>
+                <label>Rotate X Axis <input type="range" id="rotateX" min="0" max="360"></label>
+                <label>Rotate Y Axis <input type="range" id="rotateY" min="0" max="360"></label>
+                <label>Rotate Z Axis <input type="range" id="rotateZ" min="0" max="360"></label>
+            </div>
+
+            <div class="config-section">
+                <h3>Username</h3>
+                <label>Username Font <input type="text" id="usernameFont" placeholder="Roboto"></label>
+                <label>Username Colour <input type="color" id="usernameColor"></label>
+                <label>Username Background <input type="color" id="usernameBg"></label>
+                <label>Transparent <input type="checkbox" id="usernameBgTransparent"></label>
+                <label>Font Size <input type="range" id="usernameSize" min="8" max="48" value="16"></label>
+                <label>Font Weight <input type="range" id="usernameWeight" min="100" max="900" step="100"
+                        value="600"></label>
+                <label>Border Radius <input type="range" id="usernameWeight" min="100" max="900" step="100"
+                        value="600"></label>
+                <label>Padding <input type="range" id="usernameWeight" min="100" max="900" step="100"
+                        value="600"></label>
+            </div>
+
+            <div class="config-section">
+                <h3>Chat Message</h3>
+                <label>Font <input type="text" id="messageFont" placeholder="Roboto"></label>
+                <label>Colour <input type="color" id="messageColor"></label>
+                <label>Background <input type="color" id="messageBg"></label>
+                <label>Transparent <input type="checkbox" id="messageBgTransparent"></label>
+                <label>Font Size <input type="range" id="messageSize" min="8" max="48" value="16"></label>
+                <label>Font Weight <input type="range" id="messageWeight" min="100" max="900" step="100"
+                        value="400"></label>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="copyItem">
+                <span class="tag">Custom CSS</span>
+                <div class="innerurl">
+                    <span id="customCSS"></span>
+                </div>
+
+                <button class="copyButton" onclick="copyCss()" title="Copy">
+                    <span class="e-copy">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="1em" height="1em"
+                            fill="currentColor" class="bi bi-copy">
+                            <path fill-rule="evenodd"
+                                d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1z">
+                            </path>
+                        </svg>
+                    </span>
+                </button>
+            </div>
+            
+            <p class="divider"></p>
+
+            <div class="main-wrapper">
+                <!-- Esquerda e centro -->
+                <div class="left-center">
+                    <!-- Username inputs -->
+                    <div class="username-panel">
+                        <div class="username twitch">
+                            <img class="platform-icon"
+                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRT4yv3Jll78UPytkziQWHoGhj148B7M9ZUycelgirb4kmKXvOK-fpt_E3J6BZRhOHGxNs&usqp=CAU"
+                                alt="Twitch">
+                            <input id="twitchUser" placeholder="Twitch Username">
+                        </div>
+                        <div class="username youtube disabled">
+                            <img class="platform-icon"
+                                src="https://upload.wikimedia.org/wikipedia/commons/f/f4/Youtube-logo-red.png"
+                                alt="youtube">
+                            <span class="coming">Coming Soon</span>
+                        </div>
+                        <div class="username tiktok">
+                            <img class="platform-icon"
+                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Tiktok_icon.svg/640px-Tiktok_icon.svg.png"
+                                alt="youtube">
+                            <input id="tiktokUser" placeholder="TikTok Username">
+                        </div>
+                        <div class="username kick">
+                            <img class="platform-icon"
+                                src="https://static.vecteezy.com/system/resources/previews/043/362/263/non_2x/kick-logo-icon-streaming-service-free-vector.jpg"
+                                alt="youtube">
+                            <input id="kickUser" placeholder="Kick Username">
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Preview -->
+                <div class="preview">
+                    <div id="chatPreview" class="chat-box custom">
+                        <div class="chat-message">
+                            <div class="username-preview">
+                                <img class="preview-icon"
+                                    src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Twitch_Glitch_Logo_Purple.svg"
+                                    alt="Twitch">
+                                <span class="username-twitch-preview-span">K4lzan:</span>
+                                <span class="message">Lorem ipsum dolor sit amet</span>
+                            </div>
+                        </div>
+
+                        <div class="chat-message">
+                            <div class="username-preview">
+                                <img class="preview-icon"
+                                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Tiktok_icon.svg/640px-Tiktok_icon.svg.png"
+                                    alt="TikTok">
+                                <span class="username-tiktok-preview-span">Wesley Calazans:</span>
+                                <span class="message">Vero dicta doloribus...</span>
+                            </div>
+                        </div>
+
+                        <div class="chat-message">
+                            <div class="username-preview">
+                                <img class="preview-icon"
+                                    src="https://static.vecteezy.com/system/resources/previews/043/362/263/non_2x/kick-logo-icon-streaming-service-free-vector.jpg"
+                                    alt="Kick">
+                                <span class="username-kick-preview-span">Mrzapp:</span>
+                                <span class="message">Numquam velit mollitia...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <div class="footer-text">Developed by Kalzan 2025</div>
+            <div class="social-links">
+                <a href="https://instagram.com/wesleyczans" target="_blank"><img class="social-icon"
+                        src="../assets/images/instagram.png" alt="instagram"></a>
+                <a href="https://youtube.com/@k4lzan" target="_blank"><img class="social-icon" src="../assets/images/youtube.png"
+                        alt="youtube"></a>
+                <a href="https://twitch.tv/k4lzan" target="_blank"><img class="social-icon"
+                        src="../assets/images/twitch-white.png" alt="twitch"></a>
+            </div>
+        </footer>
+    </div>
+    <script src="/backend/panel/panel.js"></script>
+</body>
+
+</html>

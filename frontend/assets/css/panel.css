@@ -1,0 +1,467 @@
+/* =========================
+   RESET BASICO
+   ========================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  height: 100vh;
+  padding: 20px;
+  gap: 20px;
+  background: linear-gradient(135deg, #0f1b2b, #001510);
+  color: #fff;
+  box-sizing: border-box;
+}
+
+/* =========================
+   WRAPPER
+   ========================= */
+.wrapper {
+  grid-template-rows:
+    "card"
+    "container"
+    "footer"
+  ;
+  flex-direction: column;
+}
+
+/* =========================
+   CONFIG PANEL
+   ========================= */
+.card-config {
+  display: flex;
+  border: 1px solid hsla(0, 0%, 100%, .15);
+  border-radius: 5px;
+  padding: 20px;
+  gap: 20px;
+}
+
+.config-section {
+  background: hsla(0, 0%, 100%, .05);
+  border: 1px solid hsla(0, 0%, 100%, .15);
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.config-section h3 {
+  font-size: 22px;
+  color: #fff;
+  opacity: 0.9;
+}
+
+.config-section label {
+  display: flex;
+  font-size: 14px;
+  color: #fff;
+  opacity: 0.9;
+  justify-content: space-between;
+  align-items: center;
+  margin: 8px 0;
+  gap: 30px;
+}
+
+.config-section input:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+input::placeholder {
+  color: rgba(233, 220, 220, 0.986);
+}
+
+.config-section input[type="range"] {
+  height: 8px;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.1);
+  align-items: center;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.config-section input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #71beb0;
+  cursor: pointer;
+  border: 1px solid #dad6d6;
+}
+
+.config-section input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #71beb0;
+  cursor: pointer;
+  border: 1px solid #dad6d6;
+}
+
+/* Internet Explorer (se precisar) */
+.config-section input[type="range"]::-ms-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #71beb0;
+  cursor: pointer;
+  border: 1px solid #dad6d6;
+}
+
+.config-section input[type="text"],
+.config-section input[type="number"],
+.config-section input[type="color"] {
+  padding: 5px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 0 0 0 5px;
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  font-size: 14px;
+  font-weight: 400;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.config-section input[type="checkbox"] {
+  appearance: none;
+  width: 40px;
+  height: 20px;
+  border-radius: 20px;
+  background: #333;
+  position: relative;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.config-section input[type="checkbox"]::after {
+  content: '';
+  width: 16px;
+  height: 16px;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: transform 0.3s;
+}
+
+.config-section input[type="checkbox"]:checked {
+  background: #71beb0;
+}
+
+.config-section input[type="checkbox"]:checked::after {
+  transform: translateX(20px);
+}
+
+/* =========================
+   CONTAINER
+   ========================= */
+.container {
+  background: hsla(0, 0%, 100%, .05);
+  border: 1px solid hsla(0, 0%, 100%, .15);
+  border-radius: 5px;
+  margin: 20px 0;
+  padding: 20px;
+}
+
+.divider {
+  border: 1px solid hsla(0, 0%, 100%, .15);
+  margin-bottom: 20px;
+}
+
+.main-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.left-center,
+.preview {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  max-width: 600px;
+  min-width: 300px;
+  max-height: 300px;
+  min-height: 300px;
+}
+
+.twitch {
+  background: rgba(128, 0, 128, 0.5);
+}
+
+.youtube {
+  background: rgba(255, 0, 0, 0.5);
+}
+
+.tiktok {
+  background: rgba(221, 160, 221, 0.5);
+}
+
+.kick {
+  background: rgba(0, 128, 0, 0.5);
+}
+
+#chatPreview {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+
+  scrollbar-width: none;
+
+  -ms-overflow-style: none;
+}
+
+#chatPreview::-webkit-scrollbar {
+  display: none;
+}
+
+#chatPreview div {
+  gap: 8px;
+}
+
+.custom .chat-message {
+  font-family: 'Roboto', sans-serif;
+  color: #fff;
+}
+
+.preview {
+  width: 400px;
+  height: 200px;
+
+  background: hsla(0, 0%, 100%, .05);
+  border-radius: 5px;
+  margin: 0px 0;
+  padding: 10px;
+  margin-bottom: 5px;
+  overflow-y: none;
+}
+
+.preview input {
+  border: none;
+  background: transparent;
+  color: #fff;
+  font-weight: bold;
+  padding: 0;
+  margin: 0 6px 0 0;
+  width: auto;
+}
+
+.preview-icon {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  vertical-align: middle;
+}
+
+.username {
+  display: flex;
+  align-items: center;
+  height: 70px;
+  padding: 0 15px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  gap: 10px;
+}
+
+.username img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.username input {
+  flex: 1;
+  height: 40px;
+  border: none;
+  outline: none;
+  padding: 0 10px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  font-size: 16px;
+}
+
+.message {
+  color: #ccc;
+}
+
+.twitch-icon,
+.badge {
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+  margin-right: 2px;
+  border-radius: 4px;
+}
+
+.config-panel {
+  background: hsla(0, 0%, 100%, .05);
+  border: 1px solid hsla(0, 0%, 100%, .15);
+  border-radius: 5px;
+  margin: 20px 0;
+  padding: 20px;
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.config-panel .config-section {
+  background: #1a1a1a;
+  padding: 15px;
+  border-radius: 8px;
+  flex: 1;
+  min-width: 200px;
+  color: #fff;
+}
+
+.config-panel h3 {
+  margin: 15px 0 5px 0;
+  font-size: 16px;
+}
+
+.config-panel label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.config-panel input[type="text"],
+.config-panel input[type="number"],
+.config-panel input[type="color"],
+.config-panel input[type="range"] {
+  margin-left: 10px;
+  flex: 1;
+  padding: 4px 6px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.config-section input[type="checkbox"] {
+  appearance: none;
+  width: 40px;
+  height: 20px;
+  border-radius: 20px;
+  background: #333;
+  position: relative;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.config-section input[type="checkbox"]::after {
+  content: '';
+  width: 16px;
+  height: 16px;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: transform 0.3s;
+}
+
+.config-section input[type="checkbox"]:checked {
+  background: #61a195;
+}
+
+.config-section input[type="checkbox"]:checked::after {
+  transform: translateX(20px);
+}
+
+.top-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: #111;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  width: 100%;
+}
+
+.input-group label {
+  flex: 0 0 100px;
+}
+
+.input-group input {
+  flex: 1;
+  background: #222;
+  color: #858484;
+  border: none;
+  padding: 6px;
+  border-radius: 4px;
+}
+
+.input-group button {
+  background: #333;
+  border: none;
+  color: #fff;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.title {
+  align-self: center;
+  vertical-align: text-top;
+}
+
+.coming {
+  font-size: 14px;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #111;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 14px;
+  font-family: Arial, sans-serif;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
+  z-index: 9999;
+}
+
+.social-icon {
+  width: 24px;
+  height: 24px;
+}
+
+@media (max-width: 600px) {
+  .footer {
+    font-size: 12px;
+    padding: 8px 0;
+  }
+}

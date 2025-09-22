@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalzan | Content Creator</title>
+    <link rel="stylesheet" href="../assets/css/home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Orbitron:wght@500;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="main-wrapper">
+        <h1 class="title">Painel do Streamer</h1>
+
+        <div class="container-carrossel" id="carrossel">
+
+            <div class="carrossel-item" data-link="https://twitch.tv/k4lzan">
+                <div class="card-content">
+                    <img src="../assets/images/twitch-horizontal.svg" alt="Twitch Logo" class="card-logo">
+                    <h2 class="card-title-twitch">Live na Twitch</h2>
+                    <p class="card-text">
+                        Estamos <strong>ao vivo</strong> todos os dias às <strong>16h</strong>, jogando
+                        <strong>Delta Force</strong> com o time <strong>Game Masters [GM]</strong>.
+                        Venha acompanhar e interagir!
+                    </p>
+                </div>
+
+                <video class="wave-video" autoplay loop muted playsinline>
+                    <source src="../assets/videos/video-bg.mp4" type="video/mp4">
+                    Seu navegador não suporta vídeo HTML5.
+                </video>
+            </div>
+
+            <div class="carrossel-item" data-link="https://youtube.com/@k4lzan">
+                <div class="card-content">
+                    <img src="../assets/images/youtube-ar21.svg" alt="YouTube Logo" class="card-logo">
+                    <h2 class="card-title-youtube">Live no YouTube</h2>
+                    <p class="card-text">
+                        Estamos <strong>ao vivo</strong> todos os dias às <strong>16h</strong>, jogando
+                        <strong>Delta Force</strong> com o time <strong>Game Masters [GM]</strong>.
+                        Venha acompanhar e interagir!
+                    </p>
+                </div>
+
+                <video class="wave-video" autoplay loop muted playsinline>
+                    <source src="../assets/videos/video-bg.mp4" type="video/mp4">
+                    Seu navegador não suporta vídeo HTML5.
+                </video>
+            </div>
+
+            <div class="carrossel-item" data-link="https://kick.com/k4lzan">
+                <div class="card-content">
+                    <img src="../assets/images/Kick_logo.svg" alt="Kick Logo" class="card-logo">
+                    <h2 class="card-title-kick">Live na Kick</h2>
+                    <p class="card-text">
+                        Estamos <strong>ao vivo</strong> todos os dias às <strong>16h</strong>, jogando
+                        <strong>Delta Force</strong> com o time <strong>Game Masters [GM]</strong>.
+                        Venha acompanhar e interagir!
+                    </p>
+                </div>
+
+                <video class="wave-video" autoplay loop muted playsinline>
+                    <source src="../assets/videos/video-bg.mp4" type="video/mp4">
+                    Seu navegador não suporta vídeo HTML5.
+                </video>
+            </div>
+
+            <div class="carrossel-item" data-link="https://kalzan.com/pages/multichat.html">
+                <div class="card-content">
+                    <img src="" alt="" class="card-logo">
+                    <h2 class="card-title-multichat">Multi Chat</h2>
+                    <p class="card-text">
+                        Modere e visualize chats da Twitch, YouTube e Kick em um só lugar.
+                        Possui <strong>OBS Mode</strong> que limpa completamente o layout, mostrando somente os chats
+                        adicionados sem poluição visual.
+                        Suporta <strong>Light e Dark Mode</strong> e permite <strong>arrastar para ordenar</strong> qual
+                        chat aparece primeiro.
+                    </p>
+                </div>
+
+                <video class="wave-video" autoplay loop muted playsinline>
+                    <source src="../assets/videos/video-bg.mp4" type="video/mp4">
+                    Seu navegador não suporta vídeo HTML5.
+                </video>
+            </div>
+
+            <div class="carrossel-item disabled" data-link="https://kalzan.com/pages/panel.html">
+                <div class="card-content">
+                    <img src="" alt="" class="card-logo">
+                    <h2 class="card-title-chatobs">Chat OBS <strong class="comming-soon">EM BREVE</strong></h2>
+                    <p class="card-text">
+                        Personalize o seu chat do jeito que quiser! Escolha cores, fontes e layout, e depois gere a URL
+                        para colocar diretamente no seu overlay do OBS. Tenha um chat estiloso e totalmente integrado à
+                        sua live!
+                    </p>
+                </div>
+
+                <video class="wave-video" autoplay loop muted playsinline>
+                    <source src="../assets/videos/video-bg.mp4" type="video/mp4">
+                    Seu navegador não suporta vídeo HTML5.
+                </video>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <div class="social-links">
+                <a href="https://twitch.tv/k4lzan" target="_blank"><i class="fab fa-twitch"></i></a>
+                <a href="https://youtube.com/@k4lzan" target="_blank"><i class="fab fa-youtube"></i></a>
+                <a href="https://instagram.com/wesleyczans" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://kalzan.com/pages/donate.html" target="_blank"><i class="fa fa-heart"></i></a>
+                <a href="mailto:wesleytyber@email.com" class="contact"><i class="fas fa-envelope"></i> Contact</a>
+                <span class="footer-text">© Kalzan 2025</span>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        const carrossel = document.getElementById("carrossel");
+        const items = Array.from(carrossel.children);
+        const total = items.length;
+        const angle = 360 / total;
+        let currAngle = 0;
+        const radius = 500;
+        let autoPlay;
+
+        // Posiciona os cards
+        items.forEach((item, i) => {
+            item.style.transform = `rotateY(${i * angle}deg) translateZ(${radius}px)`;
+            item.style.cursor = "pointer";
+
+            item.addEventListener("click", () => {
+                if (item.classList.contains("disabled")) return;
+                if (item.style.pointerEvents === "auto") {
+                    const link = item.dataset.link;
+                    if (link) window.open(link, "_blank");
+                }
+            });
+        });
+
+        // Função para atualizar rotação e z-index
+        function updateCarousel() {
+            carrossel.style.transform = `rotateY(${currAngle}deg)`;
+            updateZIndices();
+        }
+
+        function updateZIndices() {
+            let frontItem = null;
+            let minDiff = 9999;
+
+            items.forEach((item, i) => {
+                let rel = ((i * angle + currAngle) % 360 + 360) % 360;
+                if (rel > 180) rel -= 360;
+
+                const z = Math.round(180 - Math.abs(rel));
+                item.style.zIndex = 1000 + z;
+                item.style.pointerEvents = "none";
+
+                if (Math.abs(rel) < minDiff) {
+                    minDiff = Math.abs(rel);
+                    frontItem = item;
+                }
+            });
+
+            if (frontItem) {
+                frontItem.style.pointerEvents = "auto";
+            }
+        }
+
+        // Rotação com scroll do mouse
+        window.addEventListener(
+            "wheel",
+            (e) => {
+                e.preventDefault();
+                currAngle += e.deltaY > 0 ? -angle : angle;
+                updateCarousel();
+            },
+            { passive: false }
+        );
+
+        // --- Auto scroll ---
+        function startAutoScroll() {
+            autoPlay = setInterval(() => {
+                currAngle -= angle;
+                updateCarousel();
+            }, 4000); // 4 segundos
+        }
+
+        function stopAutoScroll() {
+            clearInterval(autoPlay);
+        }
+
+        carrossel.addEventListener("mouseenter", stopAutoScroll);
+        carrossel.addEventListener("mouseleave", startAutoScroll);
+
+        updateCarousel();
+        startAutoScroll();
+
+    </script>
+
+</body>
+
+</html>
