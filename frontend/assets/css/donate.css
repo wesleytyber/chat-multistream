@@ -1,58 +1,157 @@
-  :root {
-      --bg: #0f1720;
-      --panel: #0b1220;
-      --muted: #94a3b8;
-      --card: #0b1228;
-      /* --accent-twitch: #9146FF; */
-      /* --accent-youtube: #FF0000; */
-      /* --accent-tiktok: #FE2858; */
-      /* --accent-kick: #75FD46; */
-      --glass: rgba(255, 255, 255, 0.04);
-      --color-white: #ffffff;
-      --color-fill-brand: #a970ff;
-  }
+/* ===== RESET ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-  body {
-      margin: 0;
-      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background: var(--bg);
-      color: #e6eef8;
-      height: 100vh;
-      overflow: hidden;
-  }
+:root {
+    --bg: #0f1720;
+    --panel: #0b1220;
+    --muted: #94a3b8;
+    --card: #0b1228;
+    --glass: rgba(255, 255, 255, 0.04);
+    --color-white: #ffffff;
+    --color-fill-brand: #a970ff;
+}
 
-  body.light {
-      --bg: #f5f7fb;
-      --panel: #ffffff;
-      --card: #fff;
-      color: #0b1220;
-      --muted: #44516a;
-      --glass: rgba(0, 0, 0, 0.03);
-  }
+body {
+    background: var(--bg);
+    color: var(--color-white);
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
 
-  .donate-page {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      height: 100vh;
-      padding: 20px;
-      background: #121212;
-      color: #fff;
-  }
+header {
+    background: var(--panel);
+    color: var(--color-white);
+    padding: 20px;
+    font-size: 24px;
+    text-align: center;
+    font-weight: bold;
+}
 
-  .qr-code img {
-      width: 200px;
-      height: 200px;
-      margin: 20px 0;
-  }
+main {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    padding: 40px;
+}
 
-  .back-button {
-      margin-top: 20px;
-      padding: 8px 16px;
-      background: #75fd46;
-      color: #000;
-      text-decoration: none;
-      border-radius: 6px;
-  }
+/* ===== Lado esquerdo ===== */
+.left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 600px;
+    color: var(--color-white);
+}
+
+.left h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.left p {
+    font-size: 1rem;
+    color: var(--muted);
+    line-height: 1.5;
+}
+
+/* ===== Lado direito ===== */
+.right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 600px;
+    gap: 15px;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    background: #2a2a2a;
+    color: #fff;
+}
+
+textarea {
+    resize: none;
+    min-height: 70px;
+}
+
+.donate-options {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.amount-btn {
+    flex: 1;
+    min-width: 60px;
+    padding: 12px;
+    border: 1px solid #333;
+    border-radius: 8px;
+    background: #222;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.amount-btn:hover {
+    background: #00aaff;
+}
+
+.amount-btn.active {
+    background: #00aaff;
+    border-color: #00aaff;
+}
+
+#customAmount,
+#customAmountCheckout {
+    flex: 2;
+    max-width: 150px;
+}
+
+.donate-methods {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#donateBtn,
+#pixDonate,
+#paypalDonate {
+    padding: 14px;
+    background: #00aaff;
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#donateBtn:hover,
+#pixDonate:hover,
+#paypalDonate:hover {
+    background: #008ecc;
+}
+
+.checkout .subtotal,
+.checkout .total {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.hidden {
+    display: none;
+}
