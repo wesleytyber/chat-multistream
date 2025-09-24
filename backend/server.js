@@ -23,7 +23,7 @@ app.use(express.static(path.join(__dirname, "../frontend")));
 
 // Rota principal
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "../frontend/pages/home.html"));
+  res.sendFile(path.join(__dirname, "../frontend/pages/index.html"));
 });
 
 // Rota donate
