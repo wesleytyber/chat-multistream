@@ -260,6 +260,80 @@ DISABLE
   cursor: not-allowed;
 }
 
-.comming-soon  {
-    color: red;
+.comming-soon {
+  color: red;
+}
+
+
+/* **********************
+RESPONSIVIDADE
+*/
+@media (max-width: 1024px) {
+  .carrossel-item {
+    width: 450px;
+    height: 300px;
+  }
+
+  .card-content {
+    padding: 20px;
+    font-size: 0.9rem;
+  }
+
+  .card-logo {
+    width: 100px;
+  }
+
+  .card-text {
+    font-size: 0.5rem;
+  }
+
+  .card-title-twitch,
+  .card-title-youtube,
+  .card-title-kick,
+  .card-title-multichat,
+  .card-title-chatobs {
+    font-size: 1.0rem;
+  }
+}
+
+/* Para celulares grandes */
+@media (max-width: 768px) {
+  .carrossel-item {
+    width: 320px;
+    height: 220px;
+  }
+
+  .card-content {
+    padding: 15px;
+    font-size: 0.85rem;
+  }
+
+  .card-logo {
+    width: 80px;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+}
+
+/* Para celulares pequenos */
+@media (max-width: 480px) {
+  .carrossel-item {
+    width: 260px;
+    height: 180px;
+  }
+
+  .card-content {
+    padding: 10px;
+    font-size: 0.8rem;
+  }
+
+  .card-logo {
+    width: 70px;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
 }
