@@ -419,21 +419,21 @@
                 chatArea.appendChild(card);
                 enableDrag(card);
             }
-
-            function twitchEmbedFor(channel) { return `https://www.twitch.tv/embed/${encodeURIComponent(channel)}/chat?darkpopout&parent=kalzan.com&parent=chat-multistream.onrender.com`; }
+            const parentDomain = window.location.hostname;
+            function twitchEmbedFor(channel) { return `https://www.twitch.tv/embed/${encodeURIComponent(channel)}/chat?darkpopout&parent=${parentDomain}`; }
 
             function youtubeEmbedFor(input) {
                 try {
                     if (input.includes('youtube') || input.includes('youtu.be')) {
                         const url = new URL(input, window.location.href);
                         const v = url.searchParams.get('v');
-                        if (v) return `https://www.youtube.com/live_chat?v=${v}&embed_domain=kalzan.com`;
+                        if (v) return `https://www.youtube.com/live_chat?v=${v}&embed_domain=${parentDomain}`;
                         const pathParts = url.pathname.split('/');
                         const maybe = pathParts[pathParts.length - 1];
-                        if (maybe) return `https://www.youtube.com/live_chat?v=${maybe}&embed_domain=kalzan.com`;
+                        if (maybe) return `https://www.youtube.com/live_chat?v=${maybe}&embed_domain=${parentDomain}`;
                     }
                 } catch (e) { }
-                return `https://www.youtube.com/live_chat?v=${encodeURIComponent(input)}&embed_domain=kalzan.com`;
+                return `https://www.youtube.com/live_chat?v=${encodeURIComponent(input)}&embed_domain=${parentDomain}`;
             }
 
             function kickEmbedFor(channel) { return `https://kick.com/popout/${encodeURIComponent(channel)}/chat`; }

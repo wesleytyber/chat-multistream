@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kalzan | Content Creator</title>
-    <link rel="stylesheet" href="/assets/css/home.css">
+    <link rel="stylesheet" href="../assets/css/home.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Orbitron:wght@500;700&display=swap"
@@ -69,7 +69,7 @@
                 </video>
             </div>
 
-            <div class="carrossel-item" data-link="https://kalzan.com/pages/multichat.html">
+            <div class="carrossel-item" data-link="/pages/multichat.html">
                 <div class="card-content">
                     <img src="" alt="" class="card-logo">
                     <h2 class="card-title-multichat">Multi Chat</h2>
@@ -88,7 +88,7 @@
                 </video>
             </div>
 
-            <div class="carrossel-item disabled" data-link="https://kalzan.com/pages/panel.html">
+            <div class="carrossel-item disabled" data-link="/pages/panel.html">
                 <div class="card-content">
                     <img src="" alt="" class="card-logo">
                     <h2 class="card-title-chatobs">Chat OBS <strong class="comming-soon">EM BREVE</strong></h2>
@@ -112,7 +112,7 @@
                 <a href="https://twitch.tv/k4lzan" target="_blank"><i class="fab fa-twitch"></i></a>
                 <a href="https://youtube.com/@k4lzan" target="_blank"><i class="fab fa-youtube"></i></a>
                 <a href="https://instagram.com/wesleyczans" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="https://kalzan.com/pages/donate.html" target="_blank"><i class="fa fa-heart"></i></a>
+                <a href="/pages/donate.html" target="_blank"><i class="fa fa-heart"></i></a>
                 <a href="mailto:wesleytyber@email.com" class="contact"><i class="fas fa-envelope"></i> Contact</a>
                 <span class="footer-text">© Kalzan 2025</span>
             </div>
@@ -137,7 +137,15 @@
                 if (item.classList.contains("disabled")) return;
                 if (item.style.pointerEvents === "auto") {
                     const link = item.dataset.link;
-                    if (link) window.open(link, "_blank");
+
+                    if (link) {
+                        // Se começar com "/", monta com o domínio atual
+                        const finalLink = link.startsWith("/")
+                            ? window.location.origin + link
+                            : link;
+
+                        window.open(finalLink, "_blank"); // abre em nova aba
+                    }
                 }
             });
         });
@@ -196,6 +204,8 @@
 
         carrossel.addEventListener("mouseenter", stopAutoScroll);
         carrossel.addEventListener("mouseleave", startAutoScroll);
+        
+        document.getElementById("donateLink").href = window.location.origin + "/pages/donate.html";
 
         updateCarousel();
         startAutoScroll();
