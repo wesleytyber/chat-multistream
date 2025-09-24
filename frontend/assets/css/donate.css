@@ -11,7 +11,7 @@
     --muted: #94a3b8;
     --card: #0b1228;
     --glass: rgba(255, 255, 255, 0.04);
-    --color-white: #ffffff;
+    --color-white: hsl(0, 3%, 87%);
     --color-fill-brand: #a970ff;
 }
 
@@ -24,6 +24,15 @@ body {
     min-height: 100vh;
 }
 
+h1,
+h2,
+h3,
+.app-title {
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 0.5px;
+    color: hsl(0, 3%, 87%);
+}
+
 header {
     background: var(--panel);
     color: var(--color-white);
@@ -31,6 +40,18 @@ header {
     font-size: 24px;
     text-align: center;
     font-weight: bold;
+}
+
+.checkout,
+.donation-page {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    max-width: 1000px;
+    margin: 0 auto;
+    min-height: 80vh;
 }
 
 main {
@@ -154,4 +175,34 @@ textarea {
 
 .hidden {
     display: none;
+}
+
+/* BACK BUTTON */
+#backToDonation {
+    display: inline-flex;
+    align-items: center;
+    width: 100px;
+    gap: 6px;
+    padding: 8px 16px;
+    font-size: 1rem;
+    font-weight: 500;
+    background-color: #0f1720;
+    color: #f8fafc;
+    border: 2px solid #2563eb;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+#backToDonation:hover {
+    background-color: #2563eb;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#backToDonation:active {
+    transform: translateY(0);
+    box-shadow: none;
 }

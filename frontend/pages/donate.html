@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Donate</title>
     <link rel="stylesheet" href="../assets/css/donate.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Orbitron:wght@500;700&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
@@ -15,8 +18,8 @@
     <!-- Página de Doação -->
     <main class="donation-page">
         <div class="left">
-            <h2>Thank you for your support!</h2>
-            <p>Thank you so much for your support. Leave a message with your donation and I'll try to reply!</p>
+            <h2>Obrigado pelo seu apoio!</h2>
+            <p>Muito obrigado pelo seu apoio. Deixe uma mensagem junto com sua doação!</p>
         </div>
         <div class="right">
             <input type="text" id="donorName" placeholder="Seu nome">
@@ -27,14 +30,15 @@
                 <button class="amount-btn" data-amount="20">R$20</button>
                 <input type="number" id="customAmount" placeholder="Outro valor">
             </div>
-            <button id="donateBtn">Donate & send message</button>
+            <button id="donateBtn">Doar & Enviar mensagem</button>
         </div>
     </main>
 
     <!-- Página de Checkout -->
     <main class="checkout hidden">
         <div class="left">
-            <h2>Payments Details</h2>
+            <h2>Detalhes de pagamentos</h2>
+            <button id="backToDonation">← Voltar</button>
             <div class="donate-options">
                 <button class="amount-btn" data-amount="5">R$5</button>
                 <button class="amount-btn" data-amount="10">R$10</button>
@@ -52,8 +56,17 @@
     <script
         src="https://www.paypal.com/sdk/js?client-id=ARxK-k7eIDOz0mkknhQRH-nWTDmY3kTVuD-Kp_kkVb-BN2Kz_fDadxXy81b-6YMBI3sEcnXM2pnmZfgI&currency=BRL"></script>
     <script>
-        // ======== Variáveis globais ========
         let selectedAmount = null;
+
+        // Botão de voltar
+        document.getElementById("backToDonation").addEventListener("click", () => {
+            document.querySelector(".checkout").style.display = "none";
+            document.querySelector(".donation-page").style.display = "grid";
+
+            // Limpa valores do checkout
+            document.getElementById("customAmountCheckout").value = "";
+            updateCheckoutValues("0.00");
+        });
 
         // Função para atualizar subtotal/total
         function updateCheckoutValues(valor) {
@@ -61,7 +74,7 @@
             document.getElementById("total").textContent = valor;
         }
 
-        // ======== Seção de seleção do valor na página inicial ========
+        // Seleção do valor na donation page
         document.querySelectorAll(".donation-page .amount-btn").forEach(btn => {
             btn.addEventListener("click", () => {
                 selectedAmount = btn.dataset.amount;
@@ -71,31 +84,32 @@
             });
         });
 
-        document.getElementById("customAmount").addEventListener("input", (e) => {
+        document.getElementById("customAmount").addEventListener("input", e => {
             let val = e.target.value.trim();
-            if (val !== "") {
-                selectedAmount = null;
-                document.querySelectorAll(".donation-page .amount-btn").forEach(b => b.classList.remove("active"));
-            }
+            if (val !== "") selectedAmount = null;
+            document.querySelectorAll(".donation-page .amount-btn").forEach(b => b.classList.remove("active"));
         });
 
-        // ======== Botão Donate & Send Message ========
+        // Clique no botão Doar & Enviar mensagem
         document.getElementById("donateBtn").addEventListener("click", () => {
-            let custom = document.getElementById("customAmount").value.trim();
-            let valor = custom !== "" ? custom : (selectedAmount || "5.00");
+            const donationCustom = document.getElementById("customAmount").value.trim();
+            let valor = donationCustom !== "" ? donationCustom : (selectedAmount || "5");
 
-            // atualizar subtotal e total
+            // Atualiza subtotal/total
             updateCheckoutValues(valor);
 
-            // mostrar checkout, esconder donation page
+            // Mostra checkout e esconde donation page
             document.querySelector(".donation-page").style.display = "none";
             document.querySelector(".checkout").style.display = "grid";
 
-            // ======== Inicializar botões do checkout ========
+            // Referências
             const checkoutButtons = document.querySelectorAll(".checkout .amount-btn");
             const checkoutCustom = document.getElementById("customAmountCheckout");
+            const paypalContainer = document.getElementById("paypal-button-container");
 
-            // função para atualizar seleção
+            paypalContainer.innerHTML = ""; // limpa botão antigo
+
+            // Função para selecionar valor no checkout
             function selectCheckoutAmount(amount, isCustom = false) {
                 checkoutButtons.forEach(b => b.classList.remove("active"));
                 if (!isCustom) {
@@ -103,50 +117,47 @@
                         if (b.dataset.amount === amount) b.classList.add("active");
                     });
                     checkoutCustom.value = "";
+                } else {
+                    checkoutCustom.value = amount;
                 }
                 updateCheckoutValues(amount);
                 return amount;
             }
 
-            // pré-selecionar valor na checkout
-            if (custom !== "") {
-                selectCheckoutAmount(custom, true);
+            // Preenche valor do donation page no checkout
+            if (donationCustom !== "") {
+                selectCheckoutAmount(donationCustom, true);
             } else {
                 selectCheckoutAmount(valor);
             }
 
-            // clique nos botões
+            // Evita adicionar múltiplos listeners
             checkoutButtons.forEach(btn => {
-                btn.addEventListener("click", () => {
+                btn.onclick = () => {
                     selectedAmount = selectCheckoutAmount(btn.dataset.amount);
-                });
+                };
             });
 
-            // input custom na checkout
-            checkoutCustom.addEventListener("input", (e) => {
+            checkoutCustom.oninput = e => {
                 let val = e.target.value.trim();
                 if (val !== "") {
                     selectedAmount = null;
                     checkoutButtons.forEach(b => b.classList.remove("active"));
                     updateCheckoutValues(val);
                 }
-            });
+            };
 
-            // inicializar PayPal
+            // Inicializa PayPal
             paypal.Buttons({
-                createOrder: function (data, actions) {
-                    const customVal = checkoutCustom.value.trim();
-                    const finalValue = customVal !== "" ? customVal : (selectedAmount || "5.00");
+                createOrder: (data, actions) => {
+                    const finalValue = checkoutCustom.value.trim() !== "" ? checkoutCustom.value.trim() : (selectedAmount || "5");
                     return actions.order.create({
-                        purchase_units: [{
-                            amount: { value: finalValue }
-                        }]
+                        purchase_units: [{ amount: { value: finalValue } }]
                     });
                 },
-                onApprove: function (data, actions) {
-                    return actions.order.capture().then(function (details) {
-                        const customVal = checkoutCustom.value.trim();
-                        const finalValue = customVal !== "" ? customVal : (selectedAmount || "5.00");
+                onApprove: (data, actions) => {
+                    return actions.order.capture().then(details => {
+                        const finalValue = checkoutCustom.value.trim() !== "" ? checkoutCustom.value.trim() : (selectedAmount || "5");
                         alert(`Obrigado ${details.payer.name.given_name}! Doação de R$${finalValue} concluída ✅`);
                     });
                 }
